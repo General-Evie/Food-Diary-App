@@ -31,13 +31,15 @@ button
     right: 0;
     bottom: 0;
     margin: 5rem;
-    border-radius: 1rem;
+    border: 1px solid #fff;
+    border-radius: .8rem;
+    background-color: #fff;
 }
 
 .content
 {
     background-color: aquamarine;
-    min-width: 80rem;
+    min-width: 40rem;
     min-height: 40rem;
     padding: 3rem;
     border-radius: 2rem;
@@ -46,7 +48,14 @@ button
 
 .list
 {
-    content: '';
+    
     background-color: #fff;
+}
+
+#pen
+{
+    height: 1.75rem;
+    width: 1.75rem;
+    /* border: 2px solid #000; */
 }
 
