@@ -1,9 +1,9 @@
 $(document).ready(() =>
 {
     
-    $('h').click(function()
+    $('.month').click(function()
     {
-        $(event.currentTarget).toggleClass('bold')
+        $(event.currentTarget).next('.calendar').slideToggle();
 
     });
 });
