@@ -17,7 +17,7 @@ html
     background-color: #555;
 }
 
-nav
+.main-nav
 {
     background-color: var(--main-color);
     padding: 2.5rem 5rem 2.5rem 5rem;
@@ -25,7 +25,7 @@ nav
     border-top-right-radius: 2rem;
 }
 
-ul
+.main-ul
 {
     display: flex;
     padding: 0;
@@ -34,7 +34,7 @@ ul
     ;
 }
 
-li
+.main-li
 {
     display: inline-block;
     list-style: none;
@@ -44,7 +44,6 @@ li
 
 h1
 {
-
     margin: 0;
 }
 
@@ -67,10 +66,11 @@ span
 #calendar 
 {
     position: fixed;
-    bottom: -30%;
+    bottom: -36.25%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
+    height: 50rem;
     width: 36rem;
     font-size: 70%;
     background-color: #fff;
@@ -176,9 +176,12 @@ span
 
 .buttons
 {
+    position: absolute;
     display: flex;
     justify-content: end;
     align-items: center;
+    bottom: 0;
+    right: 0;
 }
 
 .buttons div
@@ -220,7 +223,103 @@ span
     background-color: #fff;
 }
 
+.entry-menu
+{
+    height: 100;
+    border-radius: 2rem;
+}
 
+.entry-menu-header
+{
+    background-color: var(--main-color);
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+}
+
+.entry-menu-header h1
+{
+    font-weight: normal;
+}
+
+.close-menu
+{
+    padding: 2rem;
+}
+
+.entry-menu-nav
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6rem;
+}
+
+.entry-menu-li
+{
+    display: inline-block;
+    list-style: none;
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+}
+
+.entry-menu-content
+{
+    width: 40rem;
+    min-height: 30rem;
+    background-color: #fff;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.food
+{
+    display: none;
+    /* display: inline-flex; */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.drink
+{
+    display: none;
+    /* display: inline-flex; */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.others
+{
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+}
+
+.entry-type
+{
+    width: 4.5rem;
+    text-align: center;
+    margin: 4rem;
+}
+
+.entry-buttons
+{
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid;
+    border-radius: .8rem;
+    margin-bottom: .5rem;
+    box-shadow: 0 5px 5px 0px rgba(0, 0, 0, .4);
+}
+
+.entry-icons
+{
+    height: 1.75rem;
+    width: 1.75rem;
+}
 
 #calendar-overlay
 {
@@ -244,6 +343,12 @@ span
 {
     height: 1.75rem;
     width: 1.75rem;
-    /* border: 2px solid #000; */
 }
+
+#supplements
+{
+    width: 6rem;
+}
+
+
 
