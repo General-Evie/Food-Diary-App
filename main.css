@@ -74,7 +74,7 @@ span
     width: 36rem;
     font-size: 70%;
     background-color: #fff;
-    z-index: 5;
+    z-index: 20;
     border: 1px solid black;
     border-radius: .5rem;
     /* pointer-events: none; */
@@ -225,8 +225,17 @@ span
 
 .entry-menu
 {
-    height: 100;
-    border-radius: 2rem;
+    position: fixed;
+    bottom: -42%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    z-index: 10;
+}
+
+.entry-menu.active
+{
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .entry-menu-header
@@ -249,9 +258,9 @@ span
 .entry-menu-nav
 {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 6rem;
+    gap: 8rem;
 }
 
 .entry-menu-li
@@ -265,42 +274,26 @@ span
 .entry-menu-content
 {
     width: 40rem;
-    min-height: 30rem;
-    background-color: #fff;
+    min-height: 46rem;
+    background-color: darkcyan;
     display: grid;
     justify-content: center;
     align-items: center;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
 }
 
-.food
+.food, .drink, .others
 {
-    display: none;
-    /* display: inline-flex; */
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
-
-.drink
-{
-    display: none;
-    /* display: inline-flex; */
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.others
-{
-        display: inline-flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
 }
 
 .entry-type
 {
     width: 4.5rem;
+    height: 4.5rem;
     text-align: center;
     margin: 4rem;
 }
@@ -339,15 +332,46 @@ span
     pointer-events: all;
 }
 
+#entry-menu-overlay
+{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+
+#entry-menu-overlay.active
+{
+    opacity: 1;
+    pointer-events: all;
+}
+
 #pen
 {
     height: 1.75rem;
     width: 1.75rem;
 }
-
+   
 #supplements
 {
     width: 6rem;
+}
+
+.underline
+{
+    position: absolute;
+    content: '';
+    background-color: #000;
+    height: .2rem;
+    width: 2rem;
+    top: 7.6rem;
+    left: 7.4rem;
+    border-top-right-radius: .3rem;
+    border-top-left-radius: .3rem;
 }
 
 

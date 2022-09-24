@@ -79,30 +79,6 @@ const changeMonth = () =>
     }
 }
 
-
-
-const Calendar = document.getElementById('calendar')
-const openCalendar = document.querySelectorAll('h1, .date, .date p')
-const Overlay = document.getElementById('calendar-overlay')
-const Cancel = document.querySelectorAll('.cancel')
-
-
-
-
-// console.log(firstDayofMonth)
-// console.log(lastMonthday)
-// console.log(lastDay)
-
-openCalendar.forEach(elem => elem.addEventListener('click', active))
-Cancel.forEach(elem => elem.addEventListener('click', close))
-
-Overlay.addEventListener('click', () => {
-    const Menus = document.querySelectorAll('#calendar-overlay.active')
-    Menus.forEach(elem => {
-        close(elem)
-    })
-})
-
 document.querySelector('.date h1').innerHTML = Months[date.getMonth()];
 document.querySelector('.date p').innerHTML = MonthsAbb[date.getMonth()] + ' ' + date.getDate();
 document.querySelector('.calendar-header span').innerHTML = date.getFullYear();
@@ -122,15 +98,106 @@ document.querySelector('.nextMonth').addEventListener('click', () =>
     changeMonth();
 })
 
-function active()
+
+
+const Calendar = document.getElementById('calendar')
+const openCalendar = document.querySelectorAll('.date, .date h1, .date p')
+const calendarOverlay = document.getElementById('calendar-overlay')
+const Cancel = document.querySelectorAll('.cancel')
+const entryButton = document.querySelector('.entry-button')
+const entryMenu = document.querySelector('.entry-menu')
+const entryMenuOverlay = document.getElementById('entry-menu-overlay')
+const entryMenuBack = document.querySelector('.close-menu')
+const foodTab = document.getElementById('food')
+const drinkTab = document.getElementById('drink')
+const othersTab = document.getElementById('others')
+const underline = document.querySelector('.underline')
+
+
+
+
+
+// console.log(firstDayofMonth)
+// console.log(lastMonthday)
+// console.log(lastDay)
+
+openCalendar.forEach(elem => elem.addEventListener('click', calendarActive))
+Cancel.forEach(elem => elem.addEventListener('click', calendarClose))
+calendarOverlay.addEventListener('click', () => {
+    const calendarMenu = document.querySelectorAll('#calendar-overlay.active')
+    calendarMenu.forEach(elem => {
+        calendarClose(elem)
+    })
+})
+
+entryButton.addEventListener('click', entryMenuActive)
+entryMenuBack.addEventListener('click', entryMenuClose)
+entryMenuOverlay.addEventListener('click', () => {
+    const Menus = document.querySelectorAll('#entry-menu-overlay.active')
+    Menus.forEach(elem => {
+        entryMenuClose(elem)
+    })
+})
+
+function calendarActive()
 {
     changeMonth();
     Calendar.classList.add('active')
-    Overlay.classList.add('active');
+    calendarOverlay.classList.add('active');
 }
 
-function close()
+function calendarClose()
 {
     Calendar.classList.remove('active')
-    Overlay.classList.remove('active');
+    calendarOverlay.classList.remove('active');
 }
+
+function entryMenuActive()
+{
+    foodActive();
+    entryMenu.classList.add('active')
+    entryMenuOverlay.classList.add('active');
+}
+
+function entryMenuClose()
+{
+    entryMenu.classList.remove('active')
+    entryMenuOverlay.classList.remove('active');
+}
+
+document.getElementById('food').addEventListener('click', foodActive)
+document.getElementById('drink').addEventListener('click', drinkActive)
+document.getElementById('others').addEventListener('click', othersActive)
+
+function entryDisplay()
+{
+    document.querySelectorAll('.food').forEach(elem => elem.style.display = 'none')
+    document.querySelectorAll('.drink').forEach(elem => elem.style.display = 'none')
+    document.querySelectorAll('.others').forEach(elem => elem.style.display = 'none')
+}
+
+function foodActive()
+{
+    entryDisplay();
+    // document.querySelector('.food').classList.add('active')
+    underline.style.left = '7.4rem'
+    document.querySelectorAll('.food').forEach(elem => elem.style.display = 'inline-flex')
+}
+
+function drinkActive()
+{
+    entryDisplay();
+    // document.querySelector('.drink').classList.add('active')
+    underline.style.left = '18.9rem'
+    document.querySelectorAll('.drink').forEach(elem => elem.style.display = 'inline-flex')
+}
+
+function othersActive()
+{
+    entryDisplay();
+    // document.querySelector('.others').classList.add('active')
+    underline.style.left = '30.55rem'
+    document.querySelectorAll('.others').forEach(elem => elem.style.display = 'inline-flex')
+}
+
+
