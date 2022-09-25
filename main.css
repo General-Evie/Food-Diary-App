@@ -58,6 +58,17 @@ span
     font-size: 1rem;
 }
 
+label
+{
+    display: flex;
+    align-items: center;
+}
+
+a
+{
+    text-decoration: none;
+}
+
 .calendar-button
 {
     background-color: var(--main-color);
@@ -226,7 +237,7 @@ span
 .entry-menu
 {
     position: fixed;
-    bottom: -42%;
+    bottom: -41%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
@@ -274,13 +285,11 @@ span
 .entry-menu-content
 {
     width: 40rem;
-    min-height: 46rem;
+    min-height: 25rem;
     background-color: darkcyan;
     display: grid;
     justify-content: center;
     align-items: center;
-    border-bottom-right-radius: 2rem;
-    border-bottom-left-radius: 2rem;
 }
 
 .food, .drink, .others
@@ -290,12 +299,25 @@ span
     align-items: center;
 }
 
+.underline
+{
+    position: absolute;
+    content: '';
+    background-color: #000;
+    height: .2rem;
+    width: 2rem;
+    top: 7.6rem;
+    left: 7.4rem;
+    border-top-right-radius: .3rem;
+    border-top-left-radius: .3rem;
+}
+
 .entry-type
 {
     width: 4.5rem;
     height: 4.5rem;
     text-align: center;
-    margin: 4rem;
+    margin: 2rem;
 }
 
 .entry-buttons
@@ -312,6 +334,79 @@ span
 {
     height: 1.75rem;
     width: 1.75rem;
+}
+
+.lower-entry-menu-background
+{
+    height: 20rem;
+    background-color: darkcyan;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}
+
+.lower-entry-menu
+{
+    /* display: none; */
+    box-shadow: 0 -5px 5px 0 rgba(0, 0, 0, .4);
+}
+
+.lower-entry-menu-header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    padding-bottom: 0;
+}
+
+.entry-type-selected
+{
+    display: flex;
+    align-items: center;
+}
+
+.entry-type-icon
+{
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid;
+    border-radius: .8rem;
+    margin-right: .5rem;
+    box-shadow: 0 5px 5px 0px rgba(0, 0, 0, .4);
+}
+
+.save
+{
+    height: 2rem;
+    padding: .5rem 1.5rem;
+    border: 1px solid;
+    border-radius: .5rem;
+}
+
+.input-content
+{
+    height: 15rem;
+    padding: 2rem;
+}
+
+.input-section
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+
+.inputs 
+{
+    width: 10rem;
+}
+
+.lower-entry-menu-icons
+{
+    height: 1rem;
+    width: 1rem;
+    margin-right: 1rem;
 }
 
 #calendar-overlay
@@ -361,18 +456,13 @@ span
     width: 6rem;
 }
 
-.underline
+#check
 {
-    position: absolute;
-    content: '';
-    background-color: #000;
-    height: .2rem;
-    width: 2rem;
-    top: 7.6rem;
-    left: 7.4rem;
-    border-top-right-radius: .3rem;
-    border-top-left-radius: .3rem;
+    height: .5rem;
+    width: .5rem;
 }
+
+
 
 
 
