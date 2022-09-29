@@ -125,7 +125,7 @@
                                 </label>
                             <input type="text" required />
                             </div>
-                            <a href="#">Choose</a>
+                            <div class="description-menu">Choose</div>
                         </div>
                         <div class="input-section" id="time">
                             <div class="inputs">
@@ -135,7 +135,7 @@
                                 </label>
                                 <input type="text" required />
                             </div>
-                            <a href="#">Change</a>
+                            <div class="clock-menu">Change</div>
                         </div>
                         <div class="input-section" id="lower-entry-menu-date">
                             <div class="inputs">
@@ -145,13 +145,139 @@
                                 </label>
                                 <input type="text" required />
                             </div>
-                            <a href="#">Change</a>
+                            <div class="date-menu">Change</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div id="entry-menu-overlay"></div>
+        <div class="clock">
+            <div class="clock-header">
+                <h1>
+                    <div class="hour"></div><div>:</div><div class="minute"></div>
+                </h1>
+                <div>
+                    <p class="am">AM</p>
+                    <p class="pm">PM</p>
+                </div>
+            </div>
+            <div class="clock-content">
+                <div class="analog">
+                    <div class="dial-selector">
+                        <div class="fulcrum"></div>
+                        <div class="arm"></div>
+                        <div class="weight"></div>
+                    </div>
+                    <div class="hours">
+                        <div style="--x:1;"><b>1</b></div>
+                        <div style="--x:2;"><b>2</b></div>
+                        <div style="--x:3;"><b>3</b></div>
+                        <div style="--x:4;"><b>4</b></div>
+                        <div style="--x:5;"><b>5</b></div>
+                        <div style="--x:6;"><b>6</b></div>
+                        <div style="--x:7;"><b>7</b></div>
+                        <div style="--x:8;"><b>8</b></div>
+                        <div style="--x:9;"><b>9</b></div>
+                        <div style="--x:10;"><b>10</b></div>
+                        <div style="--x:11;"><b>11</b></div>
+                        <div style="--x:12;"><b>12</b></div> 
+                    </div>
+                    <div class="minutes">
+                        <div class="fives" style="--i:0;"><b>0</b></div>
+                        <div class="tics">
+                            <div style="--i:1;"><b>•</b></div>
+                            <div style="--i:2;"><b>•</b></div>
+                            <div style="--i:3;"><b>•</b></div>
+                            <div style="--i:4;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:5;"><b>5</b></div>
+                        <div class="tics">
+                            <div style="--i:6;"><b>•</b></div>
+                            <div style="--i:7;"><b>•</b></div>
+                            <div style="--i:8;"><b>•</b></div>
+                            <div style="--i:9;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:10;"><b>10</b></div>
+                        <div class="tics">
+                            <div style="--i:11;"><b>•</b></div>
+                            <div style="--i:12;"><b>•</b></div>
+                            <div style="--i:13;"><b>•</b></div>
+                            <div style="--i:14;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:15;"><b>15</b></div>
+                        <div class="tics">
+                            <div style="--i:16;"><b>•</b></div>
+                            <div style="--i:17;"><b>•</b></div>
+                            <div style="--i:18;"><b>•</b></div>
+                            <div style="--i:19;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:20;"><b>20</b></div>
+                        <div class="tics">
+                            <div style="--i:21;"><b>•</b></div>
+                            <div style="--i:22;"><b>•</b></div>
+                            <div style="--i:23;"><b>•</b></div>
+                            <div style="--i:24;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:25;"><b>25</b></div>
+                        <div class="tics">
+                            <div style="--i:26;"><b>•</b></div>
+                            <div style="--i:27;"><b>•</b></div>
+                            <div style="--i:28;"><b>•</b></div>
+                            <div style="--i:29;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:30;"><b>30</b></div>
+                        <div class="tics">
+                            <div style="--i:31;"><b>•</b></div>
+                            <div style="--i:32;"><b>•</b></div>
+                            <div style="--i:33;"><b>•</b></div>
+                            <div style="--i:34;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:35;"><b>35</b></div>
+                        <div class="tics">
+                            <div style="--i:36;"><b>•</b></div>
+                            <div style="--i:37;"><b>•</b></div>
+                            <div style="--i:38;"><b>•</b></div>
+                            <div style="--i:39;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:40;"><b>40</b></div>
+                        <div class="tics">
+                            <div style="--i:41;"><b>•</b></div>
+                            <div style="--i:42;"><b>•</b></div>
+                            <div style="--i:43;"><b>•</b></div>
+                            <div style="--i:44;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:45;"><b>45</b></div>
+                        <div class="tics">
+                            <div style="--i:46;"><b>•</b></div>
+                            <div style="--i:47;"><b>•</b></div>
+                            <div style="--i:48;"><b>•</b></div>
+                            <div style="--i:49;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:50;"><b>50</b></div>
+                        <div class="tics">
+                            <div style="--i:51;"><b>•</b></div>
+                            <div style="--i:52;"><b>•</b></div>
+                            <div style="--i:53;"><b>•</b></div>
+                            <div style="--i:54;"><b>•</b></div>
+                        </div>
+                        <div class="fives" style="--i:55;"><b>55</b></div>
+                        <div class="tics">
+                            <div style="--i:56;"><b>•</b></div>
+                            <div style="--i:57;"><b>•</b></div>
+                            <div style="--i:58;"><b>•</b></div>
+                            <div style="--i:59;"><b>•</b></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="digital"></div>
+                <div class="buttons">
+                    <div class="cancel">Cancel</div>
+                    <div class="ok">Ok</div>
+                </div> 
+            </div>
+        </div>
+        <div id="clock-overlay"></div>
     </main>
 <script src="jquery-2.1.0.js"></script>
 <script src="main.js"></script>

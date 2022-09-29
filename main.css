@@ -409,6 +409,164 @@ a
     margin-right: 1rem;
 }
 
+.clock
+{
+    position: fixed;
+    bottom: -11%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    z-index: 15;
+}
+
+.clock.active
+{
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.clock-header
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--main-color);
+}
+
+.clock-header h1  
+{
+    display: flex;
+}
+
+.clock-header h1 div
+{
+    opacity: .5;
+}
+
+.clock-header p 
+{
+    opacity: .5;
+    margin: .5rem;
+}
+
+.clock-content
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+    width: 30rem;
+    background-color: darkcyan;
+}
+
+.analog
+{
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    background-color: #ccc;
+    position: relative;
+}
+
+.dial-selector
+{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100%;
+    width: 100%;
+}
+
+.fulcrum
+{
+    position: absolute;
+    content: '';
+    height: .7rem;
+    width: .7rem;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    z-index: 5;
+}
+
+.arm
+{
+    position: absolute;
+    content: '';
+    height: 10rem;
+    width: .2rem;
+    top: 0;
+    background-color: var(--main-color);
+}
+
+.weight
+{
+    position: absolute;
+    content: '';
+    height: 3rem;
+    width: 3rem;
+    top: 0;
+    border-radius: 50%;
+    background-color: var(--main-color);
+}
+
+.hours
+{
+    display: none;
+}
+
+.hours div
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: .8rem;
+    transform: rotate(calc(30deg * var(--x)));
+}
+
+.hours b
+{
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 50%;
+    transform: rotate(calc(-30deg * var(--x)));
+}
+
+
+.minutes
+{
+    display: none;
+}
+
+.minutes div
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: .8rem;
+    transform: rotate(calc(6deg * var(--i)));
+}
+
+.minutes b
+{
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 50%;
+    transform: rotate(calc(-6deg * var(--i)));
+}
+
+.tics 
+{
+    color: #ccc;
+}
+
+.minutes:hover
+{
+    background-color: var(--main-color);
+}
+
 #calendar-overlay
 {
     position: fixed;
@@ -440,6 +598,24 @@ a
 }
 
 #entry-menu-overlay.active
+{
+    opacity: 1;
+    pointer-events: all;
+}
+
+#clock-overlay
+{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+
+#clock-overlay.active
 {
     opacity: 1;
     pointer-events: all;

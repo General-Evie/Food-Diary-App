@@ -1,5 +1,28 @@
+const mainColor = "#0e89c2"
+const lightBlue = "#52b5e4"
+const Calendar = document.getElementById('calendar')
+const openCalendar = document.querySelectorAll('.date, .date h1, .date p')
+const calendarOverlay = document.getElementById('calendar-overlay')
+const Cancel = document.querySelectorAll('.cancel')
+const entryButton = document.querySelector('.entry-button')
+const entryMenu = document.querySelector('.entry-menu')
+const entryMenuOverlay = document.getElementById('entry-menu-overlay')
+const entryMenuBack = document.querySelector('.close-menu')
+const foodTab = document.getElementById('food')
+const drinkTab = document.getElementById('drink')
+const othersTab = document.getElementById('others')
+const underline = document.querySelector('.underline')
+const openTimeMenu = document.querySelector('.clock-menu')
+const clock = document.querySelector('.clock')
+const clockOverlay = document.getElementById('clock-overlay')
+
+
+
+// calendar menu
+
 const date = new Date();
 const month = date.getMonth()
+
 
 const Weekdays = 
 [
@@ -71,7 +94,6 @@ const changeMonth = () =>
         days += `<div>${i}</div>`;
     }
 
-
     for(let z = 1; z <= nextDays; z++)
     {
         days += `<div class="nextMonthdays">${z}</div>`;
@@ -79,11 +101,14 @@ const changeMonth = () =>
     }
 }
 
+
+// console.log(lastMonthday)
+// console.log(lastDay)
+
 document.querySelector('.date h1').innerHTML = Months[date.getMonth()];
 document.querySelector('.date p').innerHTML = MonthsAbb[date.getMonth()] + ' ' + date.getDate();
 document.querySelector('.calendar-header span').innerHTML = date.getFullYear();
 document.querySelector('.calendar-header h1').innerHTML = Weekdays[date.getDay()] + ', ' + MonthsAbb[date.getMonth()] + ' ' + date.getDate();
-
 
 
 document.querySelector('.prevMonth').addEventListener('click', () => 
@@ -99,28 +124,6 @@ document.querySelector('.nextMonth').addEventListener('click', () =>
 })
 
 
-
-const Calendar = document.getElementById('calendar')
-const openCalendar = document.querySelectorAll('.date, .date h1, .date p')
-const calendarOverlay = document.getElementById('calendar-overlay')
-const Cancel = document.querySelectorAll('.cancel')
-const entryButton = document.querySelector('.entry-button')
-const entryMenu = document.querySelector('.entry-menu')
-const entryMenuOverlay = document.getElementById('entry-menu-overlay')
-const entryMenuBack = document.querySelector('.close-menu')
-const foodTab = document.getElementById('food')
-const drinkTab = document.getElementById('drink')
-const othersTab = document.getElementById('others')
-const underline = document.querySelector('.underline')
-
-
-
-
-
-// console.log(firstDayofMonth)
-// console.log(lastMonthday)
-// console.log(lastDay)
-
 openCalendar.forEach(elem => elem.addEventListener('click', calendarActive))
 Cancel.forEach(elem => elem.addEventListener('click', calendarClose))
 calendarOverlay.addEventListener('click', () => {
@@ -130,14 +133,6 @@ calendarOverlay.addEventListener('click', () => {
     })
 })
 
-entryButton.addEventListener('click', entryMenuActive)
-entryMenuBack.addEventListener('click', entryMenuClose)
-entryMenuOverlay.addEventListener('click', () => {
-    const Menus = document.querySelectorAll('#entry-menu-overlay.active')
-    Menus.forEach(elem => {
-        entryMenuClose(elem)
-    })
-})
 
 function calendarActive()
 {
@@ -152,6 +147,22 @@ function calendarClose()
     calendarOverlay.classList.remove('active');
 }
 
+// entry menu
+
+document.getElementById('food').addEventListener('click', foodActive)
+document.getElementById('drink').addEventListener('click', drinkActive)
+document.getElementById('others').addEventListener('click', otherActive)
+
+entryButton.addEventListener('click', entryMenuActive)
+entryMenuBack.addEventListener('click', entryMenuClose)
+entryMenuOverlay.addEventListener('click', () => {
+    const entryMenu = document.querySelectorAll('#entry-menu-overlay.active')
+    entryMenu.forEach(elem => {
+        entryMenuClose(elem)
+    })
+})
+
+
 function entryMenuActive()
 {
     foodActive();
@@ -164,10 +175,6 @@ function entryMenuClose()
     entryMenu.classList.remove('active')
     entryMenuOverlay.classList.remove('active');
 }
-
-document.getElementById('food').addEventListener('click', foodActive)
-document.getElementById('drink').addEventListener('click', drinkActive)
-document.getElementById('others').addEventListener('click', othersActive)
 
 function entryDisplay()
 {
@@ -192,12 +199,106 @@ function drinkActive()
     document.querySelectorAll('.drink').forEach(elem => elem.style.display = 'inline-flex')
 }
 
-function othersActive()
+function otherActive()
 {
     entryDisplay();
     // document.querySelector('.others').classList.add('active')
     underline.style.left = '30.55rem'
     document.querySelectorAll('.others').forEach(elem => elem.style.display = 'inline-flex')
+}
+
+// clock menu
+
+const hour = date.getHours();
+const minute = date.getMinutes();
+const standard = hour - 12
+const am = document.querySelector('.am')
+const pm = document.querySelector('.pm')
+const selector = document.querySelectorAll('.arm, .weight')
+
+if (hour > 12)
+{
+    document.querySelector('.hour').innerHTML = standard
+    pm.style.opacity = "1"
+}
+else 
+{
+    document.querySelector('.clock-header h1').innerHTML = hour 
+    am.style.opacity = "1"
+}
+
+if (minute < 10)
+{
+    document.querySelector('.minute').innerHTML = '0' + minute
+}
+else
+{
+    document.querySelector('.minute').innerHTML = minute
+}
+
+console.log(minute)
+
+openTimeMenu.addEventListener('click', clockMenuActive)
+entryMenuBack.addEventListener('click', clockMenuClose)
+clockOverlay.addEventListener('click', () => {
+    const clockMenu = document.querySelectorAll('#clock-overlay.active')
+    clockMenu.forEach(elem => {
+        clockMenuClose(elem)
+    })
+})
+
+document.querySelector('.minute').addEventListener('click', minutesActive)
+document.querySelector('.hour').addEventListener('click', hoursActive)
+
+
+// document.querySelector('.analog').addEventListener('mousemove', (e) =>
+// {
+//     const x = e.clientX;
+//     const y = e.clientY;
+//     selector.style.left = x + "px" 
+//     selector.style.top = y + "px"
+// })
+
+function clockMenuActive()
+{
+    hoursActive();
+    entryMenuClose();
+    clock.classList.add('active')
+    clockOverlay.classList.add('active');
+}
+
+function clockMenuClose()
+{
+    entryMenuActive();
+    clock.classList.remove('active')
+    clockOverlay.classList.remove('active');
+}
+
+function clockDisplay()
+{
+    document.querySelector('.hours').style.display = 'none'
+    document.querySelector('.minutes').style.display = 'none'
+}
+
+function hoursActive()
+{
+    clockDisplay();
+    document.querySelector('.hour').style.opacity = "1"
+    document.querySelector('.minute').style.opacity = ".5"
+    document.querySelector('.hours').style.display = 'block'
+}
+
+function minutesActive()
+{
+    clockDisplay();
+    document.querySelector('.minute').style.opacity = "1"
+    document.querySelector('.hour').style.opacity = ".5"
+    document.querySelector('.minutes').style.display = 'block'
+}
+
+function selectedNumber()
+{
+
 }
 
 
