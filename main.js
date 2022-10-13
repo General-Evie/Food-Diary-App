@@ -18,6 +18,7 @@ const clockOverlay = document.getElementById('clock-overlay')
 
 
 
+
 // calendar menu
 
 const date = new Date();
@@ -67,7 +68,7 @@ const Weekdays =
         "Dec"
     ]
 
-const changeMonth = () => 
+const adjustCalendar = () =>
 {
     date.setDate(1)
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
@@ -77,32 +78,65 @@ const changeMonth = () =>
     const nextMonthday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay() 
     const nextDays = 7 - nextMonthday - 1 
     const Monthdays = document.querySelector('.days')
+    
 
     document.querySelector('.date2 span').innerHTML = date.getFullYear();
     document.querySelector('.date2 h2').innerHTML = Months[date.getMonth()];
     document.querySelector('.date2 h2').innerHTML = Months[date.getMonth()];
 
-    let days = ""
+    // let days = ""
+    Monthdays.innerHTML = '';
 
     for(let x = firstDayofMonth; x > 0; x--)
     {
-        days += `<div class="lastMonthdays">${lastMonthday - x + 1}</div>`;
+        const prevMonthDays = document.createElement('div')
+        prevMonthDays.classList.add('lastMonthdays')
+        prevMonthDays.innerHTML = lastMonthday - x + 1
+        
+        Monthdays.appendChild(prevMonthDays);
     }
 
     for(let i = 1; i <= lastDay; i++)
     {
-        days += `<div>${i}</div>`;
+        const Days = document.createElement('div') 
+        Days.innerHTML = i 
+        if(i === new Date().getDate() && date.getMonth() === new Date().getMonth())
+        {
+            Days.classList.add('selected')
+            Days.classList.add('allDays')
+        }
+        else
+        {
+            Days.classList.add('allDays')
+        }
+       
+        document.querySelectorAll('.allDays').forEach(elem => elem.addEventListener('click', (event) => 
+        {
+            document.querySelectorAll('.selected').forEach(elem => elem.classList.remove('selected'))
+            console.log(date)
+            event.target.classList.add('selected')
+        }))
+
+        Monthdays.appendChild(Days);
+        
     }
 
     for(let z = 1; z <= nextDays; z++)
     {
-        days += `<div class="nextMonthdays">${z}</div>`;
-        Monthdays.innerHTML = days;
+
+        const nextMonthDays = document.createElement('div')
+        nextMonthDays.classList.add('nextMonthdays')
+        nextMonthDays.innerHTML = z
+        
+        Monthdays.appendChild(nextMonthDays);
+        
     }
 }
+    
+// console.log(lastDay)
 
 
-// console.log(lastMonthday)
+
 // console.log(lastDay)
 
 document.querySelector('.date h1').innerHTML = Months[date.getMonth()];
@@ -114,14 +148,23 @@ document.querySelector('.calendar-header h1').innerHTML = Weekdays[date.getDay()
 document.querySelector('.prevMonth').addEventListener('click', () => 
 {
     date.setMonth(date.getMonth() - 1)
-    changeMonth();
+    adjustCalendar();
 })
 
 document.querySelector('.nextMonth').addEventListener('click', () => 
 {
     date.setMonth(date.getMonth() + 1)
-    changeMonth();
+    adjustCalendar();
 })
+
+// document.querySelectorAll('.allDays').forEach(elem => elem.addEventListener('click', (event) =>
+// {
+//     event.target.classList.add('selected');
+//     changeCalendar();
+// }))
+// console.log(clickedEntryDate)
+
+
 
 
 openCalendar.forEach(elem => elem.addEventListener('click', calendarActive))
@@ -136,7 +179,7 @@ calendarOverlay.addEventListener('click', () => {
 
 function calendarActive()
 {
-    changeMonth();
+    adjustCalendar();
     Calendar.classList.add('active')
     calendarOverlay.classList.add('active');
 }
@@ -172,6 +215,7 @@ function entryMenuActive()
 
 function entryMenuClose()
 {
+    closeLowerEntryMenu();
     entryMenu.classList.remove('active')
     entryMenuOverlay.classList.remove('active');
 }
@@ -207,6 +251,76 @@ function otherActive()
     document.querySelectorAll('.others').forEach(elem => elem.style.display = 'inline-flex')
 }
 
+// lower entry menu 
+
+const entryButtons = document.querySelectorAll('.entry-type')
+const lowerEntryMenu = document.querySelector('.lower-entry-menu')
+const entrySelected = document.querySelector('.entry-type-selected')
+const currentTime = document.querySelector('.selected-time')
+const selectedDate = document.querySelector('.selected-date')
+const entryDateMenu = document.querySelector('.date-menu')
+// const EntryDate = (event) => {
+//     event.target.classList.add('date-clicked');
+//   }
+
+    
+
+
+entryButtons.forEach(elem => elem.addEventListener('click', openLowerEntryMenu))
+entryDateMenu.addEventListener('click', lowerEntryMenuCalendar)
+
+
+function openLowerEntryMenu()
+{
+    entryType();
+    Time();
+    today();
+    lowerEntryMenu.style.display = 'block'
+}
+
+function closeLowerEntryMenu()
+{
+    lowerEntryMenu.style.display = 'none'
+}
+
+function entryType()
+{
+    entrySelected.innerHTML = event.target.innerHTML
+}
+
+function Time()
+{
+    if (hour <= 11)
+    {
+        currentTime.innerHTML = selectedTime.innerHTML + ' ' + am.innerHTML
+    }
+    else if (hour > 12)
+    {
+        currentTime.innerHTML = selectedTime.innerHTML + ' ' + pm.innerHTML
+    }
+    else 
+    {
+        currentTime.innerHTML = selectedTime.innerHTML + ' ' + pm.innerHTML
+    }
+}
+
+function today()
+{
+    selectedDate.innerHTML = Months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+}
+
+function lowerEntryMenuCalendar()
+{
+    calendarActive();
+}
+
+// function clickedEntryDate(event)
+// {
+//     event.target.classList.add('selected')
+//     console.log(date)
+// }
+
+
 // clock menu
 
 const hour = date.getHours();
@@ -214,29 +328,40 @@ const minute = date.getMinutes();
 const standard = hour - 12
 const am = document.querySelector('.am')
 const pm = document.querySelector('.pm')
-const selector = document.querySelectorAll('.arm, .weight')
+const selected = document.querySelector('.arm')
+const hoursRatio = hour / 12
+const Hours = document.querySelector('.hours')
+const selectedTime = document.querySelector('.clock-header h1')
 
-if (hour > 12)
+
+
+
+if (hour <= 11)
 {
-    document.querySelector('.hour').innerHTML = standard
+    document.querySelector('.Hour').innerHTML = hour 
+    am.style.opacity = "1"
+}
+else if (hour > 12)
+{
+    document.querySelector('.Hour').innerHTML = standard
     pm.style.opacity = "1"
 }
 else 
 {
-    document.querySelector('.clock-header h1').innerHTML = hour 
-    am.style.opacity = "1"
+    document.querySelector('.Hour').innerHTML = hour 
+    pm.style.opacity = "1"
 }
 
 if (minute < 10)
 {
-    document.querySelector('.minute').innerHTML = '0' + minute
+    document.querySelector('.Minute').innerHTML = '0' + minute
 }
 else
 {
-    document.querySelector('.minute').innerHTML = minute
+    document.querySelector('.Minute').innerHTML = minute
 }
 
-console.log(minute)
+
 
 openTimeMenu.addEventListener('click', clockMenuActive)
 entryMenuBack.addEventListener('click', clockMenuClose)
@@ -247,22 +372,31 @@ clockOverlay.addEventListener('click', () => {
     })
 })
 
-document.querySelector('.minute').addEventListener('click', minutesActive)
-document.querySelector('.hour').addEventListener('click', hoursActive)
+// document.querySelector('.Minute').addEventListener('click', minutesActive)
+// document.querySelector('.Hour').addEventListener('click', hoursActive)
 
 
-// document.querySelector('.analog').addEventListener('mousemove', (e) =>
+// document.querySelector('.analog').addEventListener('mousemove', () =>
 // {
-//     const x = e.clientX;
-//     const y = e.clientY;
-//     selector.style.left = x + "px" 
-//     selector.style.top = y + "px"
+//     selector.style.transform = "rotate(30deg)";
 // })
+
+// for(s = 1; s <= 12; s++)
+// {
+
+// }
+
+// let hours = ""
+// for(let h = 1; h <= 12; h++)
+// {
+//     hours += `<div>${h}</div>`;
+//     Hours.innerHTML = hours;
+// }
 
 function clockMenuActive()
 {
-    hoursActive();
-    entryMenuClose();
+    // hoursActive();
+    // setArm(selected, hoursRatio);
     clock.classList.add('active')
     clockOverlay.classList.add('active');
 }
@@ -274,31 +408,31 @@ function clockMenuClose()
     clockOverlay.classList.remove('active');
 }
 
-function clockDisplay()
-{
-    document.querySelector('.hours').style.display = 'none'
-    document.querySelector('.minutes').style.display = 'none'
-}
+// function clockDisplay()
+// {
+//     document.querySelector('.hours').style.display = 'none'
+//     document.querySelector('.minutes').style.display = 'none'
+// }
 
-function hoursActive()
-{
-    clockDisplay();
-    document.querySelector('.hour').style.opacity = "1"
-    document.querySelector('.minute').style.opacity = ".5"
-    document.querySelector('.hours').style.display = 'block'
-}
+// function hoursActive()
+// {
+//     clockDisplay();
+//     document.querySelector('.Hour').style.opacity = "1"
+//     document.querySelector('.Minute').style.opacity = ".5"
+//     document.querySelector('.hours').style.display = 'block'
+// }
 
-function minutesActive()
-{
-    clockDisplay();
-    document.querySelector('.minute').style.opacity = "1"
-    document.querySelector('.hour').style.opacity = ".5"
-    document.querySelector('.minutes').style.display = 'block'
-}
+// function minutesActive()
+// {
+//     clockDisplay();
+//     document.querySelector('.Minute').style.opacity = "1"
+//     document.querySelector('.Hour').style.opacity = ".5"
+//     document.querySelector('.minutes').style.display = 'block'
+// }
 
-function selectedNumber()
-{
-
-}
+// function setArm(element, rotation)
+// {
+//     element.style.setProperty('--arm-rotation', rotation * 360)
+// }
 
 

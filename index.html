@@ -60,15 +60,18 @@
             <div class="buttons">
                 <div class="cancel">Cancel</div>
                 <div class="ok">Ok</div>
+                <div class="entry-cancel">Cancel</div>
+                <div class="entry-ok">Ok</div>
             </div>
         </div>
         <div id="calendar-overlay"></div>
 
         
         <div class="content"> 
-            <div class="list">
-            <button class="entry-button"><img id="pen" src="icons/pen-to-square-solid.svg" alt=""></button>
+            <div class="entries">
+
             </div>
+            <button class="entry-button"><img id="pen" src="icons/pen-to-square-solid.svg" alt=""></button>
         </div>
         <div class="entry-menu">
             <div class="entry-menu-header">
@@ -111,9 +114,7 @@
             <div class="lower-entry-menu-background">
                 <div class="lower-entry-menu">
                     <div class="lower-entry-menu-header">
-                        <div class="entry-type-selected">
-                            <button class="entry-type-icon"><img src="icons/bowl-food-solid.svg" alt=""></button>Lunch
-                        </div>
+                        <div class="entry-type-selected"></div>
                         <button class="save">Save <img id="check" src="icons/circle-check-solid.svg" alt=""></button>
                     </div>
                     <div class="input-content">
@@ -123,7 +124,7 @@
                                     <img class="lower-entry-menu-icons" src="icons/list-ul-solid.svg" alt="">
                                     Description
                                 </label>
-                            <input type="text" required />
+                            <input class="description-input" type="text" required />
                             </div>
                             <div class="description-menu">Choose</div>
                         </div>
@@ -133,7 +134,7 @@
                                     <img class="lower-entry-menu-icons" src="icons/clock-regular.svg" alt="">
                                     Time
                                 </label>
-                                <input type="text" required />
+                                <div class="selected-time"></div>
                             </div>
                             <div class="clock-menu">Change</div>
                         </div>
@@ -143,7 +144,7 @@
                                     <img class="lower-entry-menu-icons" src="icons/calendar-regular.svg" alt="">
                                     Date
                                 </label>
-                                <input type="text" required />
+                                <div class="selected-date"></div>
                             </div>
                             <div class="date-menu">Change</div>
                         </div>
@@ -155,122 +156,128 @@
         <div class="clock">
             <div class="clock-header">
                 <h1>
-                    <div class="hour"></div><div>:</div><div class="minute"></div>
+                    <div class="Hour"></div><div>:</div>
+                    <div class="Minute"></div>
                 </h1>
                 <div>
                     <p class="am">AM</p>
                     <p class="pm">PM</p>
                 </div>
+                <!-- <h1>Set Time</h1> -->
             </div>
             <div class="clock-content">
-                <div class="analog">
+                <!-- <div class="analog">
                     <div class="dial-selector">
                         <div class="fulcrum"></div>
                         <div class="arm"></div>
-                        <div class="weight"></div>
                     </div>
                     <div class="hours">
-                        <div style="--x:1;"><b>1</b></div>
-                        <div style="--x:2;"><b>2</b></div>
-                        <div style="--x:3;"><b>3</b></div>
-                        <div style="--x:4;"><b>4</b></div>
-                        <div style="--x:5;"><b>5</b></div>
-                        <div style="--x:6;"><b>6</b></div>
-                        <div style="--x:7;"><b>7</b></div>
-                        <div style="--x:8;"><b>8</b></div>
-                        <div style="--x:9;"><b>9</b></div>
-                        <div style="--x:10;"><b>10</b></div>
-                        <div style="--x:11;"><b>11</b></div>
-                        <div style="--x:12;"><b>12</b></div> 
+                        <div class="hr hr1"><b>1</b></div>
+                        <div class="hr hr2"><b>2</b></div>
+                        <div class="hr hr3"><b>3</b></div>
+                        <div class="hr hr4"><b>4</b></div>
+                        <div class="hr hr5"><b>5</b></div>
+                        <div class="hr hr6"><b>6</b></div>
+                        <div class="hr hr7"><b>7</b></div>
+                        <div class="hr hr8"><b>8</b></div>
+                        <div class="hr hr9"><b>9</b></div>
+                        <div class="hr hr10"><b>10</b></div>
+                        <div class="hr hr11"><b>11</b></div>
+                        <div class="hr hr12"><b>12</b></div>
                     </div>
                     <div class="minutes">
-                        <div class="fives" style="--i:0;"><b>0</b></div>
+                        <div class="fives min min0"><b>0</b></div>
                         <div class="tics">
-                            <div style="--i:1;"><b>•</b></div>
-                            <div style="--i:2;"><b>•</b></div>
-                            <div style="--i:3;"><b>•</b></div>
-                            <div style="--i:4;"><b>•</b></div>
+                            <div class="min min1"><b>•</b></div>
+                            <div class="min min2"><b>•</b></div>
+                            <div class="min min3"><b>•</b></div>
+                            <div class="min min4"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:5;"><b>5</b></div>
+                        <div class="fives min min5"><b>5</b></div>
                         <div class="tics">
-                            <div style="--i:6;"><b>•</b></div>
-                            <div style="--i:7;"><b>•</b></div>
-                            <div style="--i:8;"><b>•</b></div>
-                            <div style="--i:9;"><b>•</b></div>
+                            <div class="min min6"><b>•</b></div>
+                            <div class="min min7"><b>•</b></div>
+                            <div class="min min8"><b>•</b></div>
+                            <div class="min min9"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:10;"><b>10</b></div>
+                        <div class="fives min min10"><b>10</b></div>
                         <div class="tics">
-                            <div style="--i:11;"><b>•</b></div>
-                            <div style="--i:12;"><b>•</b></div>
-                            <div style="--i:13;"><b>•</b></div>
-                            <div style="--i:14;"><b>•</b></div>
+                            <div class="min min11"><b>•</b></div>
+                            <div class="min min12"><b>•</b></div>
+                            <div class="min min13"><b>•</b></div>
+                            <div class="min min14"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:15;"><b>15</b></div>
+                        <div class="fives min min15"><b>15</b></div>
                         <div class="tics">
-                            <div style="--i:16;"><b>•</b></div>
-                            <div style="--i:17;"><b>•</b></div>
-                            <div style="--i:18;"><b>•</b></div>
-                            <div style="--i:19;"><b>•</b></div>
+                            <div class="min min16"><b>•</b></div>
+                            <div class="min min17"><b>•</b></div>
+                            <div class="min min18"><b>•</b></div>
+                            <div class="min min19"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:20;"><b>20</b></div>
+                        <div class="fives min min20"><b>20</b></div>
                         <div class="tics">
-                            <div style="--i:21;"><b>•</b></div>
-                            <div style="--i:22;"><b>•</b></div>
-                            <div style="--i:23;"><b>•</b></div>
-                            <div style="--i:24;"><b>•</b></div>
+                            <div class="min min21"><b>•</b></div>
+                            <div class="min min22"><b>•</b></div>
+                            <div class="min min23"><b>•</b></div>
+                            <div class="min min24"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:25;"><b>25</b></div>
+                        <div class="fives min min25"><b>25</b></div>
                         <div class="tics">
-                            <div style="--i:26;"><b>•</b></div>
-                            <div style="--i:27;"><b>•</b></div>
-                            <div style="--i:28;"><b>•</b></div>
-                            <div style="--i:29;"><b>•</b></div>
+                            <div class="min min26"><b>•</b></div>
+                            <div class="min min27"><b>•</b></div>
+                            <div class="min min28"><b>•</b></div>
+                            <div class="min min29"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:30;"><b>30</b></div>
+                        <div class="fives min min30"><b>30</b></div>
                         <div class="tics">
-                            <div style="--i:31;"><b>•</b></div>
-                            <div style="--i:32;"><b>•</b></div>
-                            <div style="--i:33;"><b>•</b></div>
-                            <div style="--i:34;"><b>•</b></div>
+                            <div class="min min31"><b>•</b></div>
+                            <div class="min min32"><b>•</b></div>
+                            <div class="min min33"><b>•</b></div>
+                            <div class="min min34"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:35;"><b>35</b></div>
+                        <div class="fives min min35"><b>35</b></div>
                         <div class="tics">
-                            <div style="--i:36;"><b>•</b></div>
-                            <div style="--i:37;"><b>•</b></div>
-                            <div style="--i:38;"><b>•</b></div>
-                            <div style="--i:39;"><b>•</b></div>
+                            <div class="min min36"><b>•</b></div>
+                            <div class="min min37"><b>•</b></div>
+                            <div class="min min38"><b>•</b></div>
+                            <div class="min min39"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:40;"><b>40</b></div>
+                        <div class="fives min min40"><b>40</b></div>
                         <div class="tics">
-                            <div style="--i:41;"><b>•</b></div>
-                            <div style="--i:42;"><b>•</b></div>
-                            <div style="--i:43;"><b>•</b></div>
-                            <div style="--i:44;"><b>•</b></div>
+                            <div class="min min41"><b>•</b></div>
+                            <div class="min min42"><b>•</b></div>
+                            <div class="min min43"><b>•</b></div>
+                            <div class="min min44"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:45;"><b>45</b></div>
+                        <div class="fives min min45"><b>45</b></div>
                         <div class="tics">
-                            <div style="--i:46;"><b>•</b></div>
-                            <div style="--i:47;"><b>•</b></div>
-                            <div style="--i:48;"><b>•</b></div>
-                            <div style="--i:49;"><b>•</b></div>
+                            <div class="min min46"><b>•</b></div>
+                            <div class="min min47"><b>•</b></div>
+                            <div class="min min48"><b>•</b></div>
+                            <div class="min min49"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:50;"><b>50</b></div>
+                        <div class="fives min min50"><b>50</b></div>
                         <div class="tics">
-                            <div style="--i:51;"><b>•</b></div>
-                            <div style="--i:52;"><b>•</b></div>
-                            <div style="--i:53;"><b>•</b></div>
-                            <div style="--i:54;"><b>•</b></div>
+                            <div class="min min51"><b>•</b></div>
+                            <div class="min min52"><b>•</b></div>
+                            <div class="min min53"><b>•</b></div>
+                            <div class="min min54"><b>•</b></div>
                         </div>
-                        <div class="fives" style="--i:55;"><b>55</b></div>
+                        <div class="fives min min55"><b>55</b></div>
                         <div class="tics">
-                            <div style="--i:56;"><b>•</b></div>
-                            <div style="--i:57;"><b>•</b></div>
-                            <div style="--i:58;"><b>•</b></div>
-                            <div style="--i:59;"><b>•</b></div>
+                            <div class="min min56"><b>•</b></div>
+                            <div class="min min57"><b>•</b></div>
+                            <div class="min min58"><b>•</b></div>
+                            <div class="min min59"><b>•</b></div>
                         </div>
                     </div>
+                </div> -->
+                <div class="digital">
+                    <h2>Time</h2>
+                    <div>
+                        <input type="time">
+                    </div>
                 </div>
-                <div class="digital"></div>
                 <div class="buttons">
                     <div class="cancel">Cancel</div>
                     <div class="ok">Ok</div>
