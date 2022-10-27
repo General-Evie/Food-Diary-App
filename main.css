@@ -208,6 +208,7 @@ a
 
 .buttons div
 {
+    display: none;
     background-color: var(--white);
     margin: 1rem;
     padding: 1rem;
@@ -414,7 +415,7 @@ a
 
 .inputs 
 {
-    width: 10rem;
+    width: 12rem;
 }
 
 .description-input
@@ -492,7 +493,7 @@ a
     background-color: darkcyan;
 }
 
-/* .analog
+.analog
 {
     width: 20rem;
     height: 20rem;
@@ -509,9 +510,9 @@ a
     align-items: center; 
     height: 100%;
     width: 100%;
-} */
+} 
 
-/* .fulcrum
+.fulcrum
 {
     position: absolute;
     content: '';
@@ -531,11 +532,11 @@ a
     height: 10rem;
     bottom: 50%;
     transform-origin: bottom;
-    transform: rotate(calc(var(--arm-rotation) * 1deg));
+    transform: rotate(calc(30deg * var(--arm-rotation)));
     background-color: var(--main-color);
-} */
+} 
 
-/* .hours .hr
+.hours div
 {
     --rotation: 0;
     position: absolute;
@@ -543,21 +544,9 @@ a
     height: 100%;
     text-align: center;
     font-size: .8rem;
-    transform: rotate(var(--rotation));
+    transform: rotate(calc(30deg * var(--rotation)));
     pointer-events: none;
 }
-
-.hours .hr1 { --rotation: 30deg;}
-.hours .hr2 { --rotation: 60deg;}
-.hours .hr3 { --rotation: 90deg;}
-.hours .hr4 { --rotation: 120deg;}
-.hours .hr5 { --rotation: 150deg;}
-.hours .hr6 { --rotation: 180deg;}
-.hours .hr7 { --rotation: 210deg;}
-.hours .hr8 { --rotation: 240deg;}
-.hours .hr9 { --rotation: 270deg;}
-.hours .hr10 { --rotation: 300deg;}
-.hours .hr11 { --rotation: 330deg;}
 
 .hours b
 {
@@ -567,21 +556,9 @@ a
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    transform: rotate(var(--Reverse-rotation));
+    transform: rotate(calc(-30deg * var(--Reverse-rotation)));
     pointer-events: all;
 }
-
-.hours .hr1 b { --Reverse-rotation: -30deg;}
-.hours .hr2 b { --Reverse-rotation: -60deg;}
-.hours .hr3 b { --Reverse-rotation: -90deg;}
-.hours .hr4 b { --Reverse-rotation: -120deg;}
-.hours .hr5 b { --Reverse-rotation: -150deg;}
-.hours .hr6 b { --Reverse-rotation: -180deg;}
-.hours .hr7 b { --Reverse-rotation: -210deg;}
-.hours .hr8 b { --Reverse-rotation: -240deg;}
-.hours .hr9 b { --Reverse-rotation: -270deg;}
-.hours .hr10 b { --Reverse-rotation: -300deg;}
-.hours .hr11 b { --Reverse-rotation: -330deg;}
 
 .minutes div
 {
@@ -592,9 +569,9 @@ a
     font-size: .8rem;
     transform: rotate(calc(6deg * var(--i)));
     pointer-events: none;
-} */
+} 
 
-/* .minutes b
+.minutes b
 {
     display: inline-block;
     padding: 1rem;
@@ -604,19 +581,19 @@ a
     z-index: 10;
     transform: rotate(calc(-6deg * var(--i)));
     pointer-events: all;
-} */
+} 
 
-/* .tics 
+.tics 
 {
     color: transparent;
-} */
+} 
 
-/* .hours b:hover, .minutes b:hover
+.hours b:hover, .minutes b:hover
 {
     z-index: -10;
     color: var(--white);
     background-color: var(--light-blue);
-} */
+} 
 
 #calendar-overlay
 {
