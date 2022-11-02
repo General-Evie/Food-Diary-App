@@ -204,146 +204,6 @@ function calendarClose()
     calendarOverlay.classList.remove('active');
 }
 
-
-// entry menu
-
-document.getElementById('food').addEventListener('click', foodActive)
-document.getElementById('drink').addEventListener('click', drinkActive)
-document.getElementById('others').addEventListener('click', otherActive)
-
-entryButton.addEventListener('click', entryMenuActive)
-entryMenuBack.addEventListener('click', entryMenuClose)
-entryMenuOverlay.addEventListener('click', () => {
-    const entryMenu = document.querySelectorAll('#entry-menu-overlay.active')
-    entryMenu.forEach(elem => {
-        entryMenuClose(elem)
-    })
-})
-
-
-function entryMenuActive()
-{
-    foodActive();
-    entryMenu.classList.add('active')
-    entryMenuOverlay.classList.add('active');
-}
-
-function entryMenuClose()
-{
-    closeLowerEntryMenu();
-    entryMenu.classList.remove('active')
-    entryMenuOverlay.classList.remove('active');
-}
-
-function entryDisplay()
-{
-    document.querySelectorAll('.food').forEach(elem => elem.style.display = 'none')
-    document.querySelectorAll('.drink').forEach(elem => elem.style.display = 'none')
-    document.querySelectorAll('.others').forEach(elem => elem.style.display = 'none')
-}
-
-function foodActive()
-{
-    entryDisplay();
-    underline.style.left = '7.4rem'
-    document.querySelectorAll('.food').forEach(elem => elem.style.display = 'inline-flex')
-}
-
-function drinkActive()
-{
-    entryDisplay();
-    underline.style.left = '18.9rem'
-    document.querySelectorAll('.drink').forEach(elem => elem.style.display = 'inline-flex')
-}
-
-function otherActive()
-{
-    entryDisplay();
-    underline.style.left = '30.55rem'
-    document.querySelectorAll('.others').forEach(elem => elem.style.display = 'inline-flex')
-}
-
-// lower entry menu 
-
-const entryButtons = document.querySelectorAll('.entry-type')
-const lowerEntryMenu = document.querySelector('.lower-entry-menu')
-const entrySelected = document.querySelector('.entry-type-selected')
-const selectedTime = document.querySelector('.selected-time')
-const selectedDate = document.querySelector('.selected-date')
-const entryDateMenu = document.querySelector('.date-menu')
-// const EntryDate = (event) => {
-//     event.target.classList.add('date-clicked');
-//   }
-
-    
-
-
-entryButtons.forEach(elem => elem.addEventListener('click', openLowerEntryMenu))
-entryDateMenu.addEventListener('click', lowerEntryMenuCalendar)
-entryOK.addEventListener('click', newDateSelected)
-
-today();
-
-function openLowerEntryMenu()
-{
-    entryType();
-    timeSet();
-    lowerEntryMenu.style.display = 'block'
-}
-
-function closeLowerEntryMenu()
-{
-    lowerEntryMenu.style.display = 'none'
-}
-
-function entryType()
-{
-    entrySelected.innerHTML = event.target.innerHTML
-}
-
-// function Time()
-// {
-//     if (hour <= 11)
-//     {
-//         selectedTime.innerHTML = headerTime.innerHTML + ' ' + am.innerHTML
-//     }
-//     else if (hour > 12)
-//     {
-//         selectedTime.innerHTML = headerTime.innerHTML + ' ' + pm.innerHTML
-//     }
-//     else 
-//     {
-//         selectedTime.innerHTML = headerTime.innerHTML + ' ' + pm.innerHTML
-//     }
-// }
-
-function today()
-{
-    selectedDate.innerHTML = Months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
-}
-
-function newDateSelected()
-{
-    calendarClose();
-    selectedDate.innerHTML = calendarHeaderDate.innerHTML + ', ' + date.getFullYear();
-}
-
-function lowerEntryMenuCalendar()
-{
-    adjustCalendar();
-    Calendar.classList.add('active')
-    calendarOverlay.classList.add('active');
-    document.querySelectorAll('.ok, .cancel').forEach(elem => elem.style.display = 'none')
-    document.querySelectorAll('.entry-ok, .entry-cancel').forEach(elem => elem.style.display = 'block')
-}
-
-// function clickedEntryDate(event)
-// {
-//     event.target.classList.add('selected')
-//     console.log(date)
-// }
-
-
 // clock menu
 
 const hour = date.getHours();
@@ -578,4 +438,144 @@ function setHours(element, rotation)
 {
     element.style.setProperty('--rotation', rotation = h)
 }
+
+// entry menu
+
+document.getElementById('food').addEventListener('click', foodActive)
+document.getElementById('drink').addEventListener('click', drinkActive)
+document.getElementById('others').addEventListener('click', otherActive)
+
+entryButton.addEventListener('click', entryMenuActive)
+entryMenuBack.addEventListener('click', entryMenuClose)
+entryMenuOverlay.addEventListener('click', () => {
+    const entryMenu = document.querySelectorAll('#entry-menu-overlay.active')
+    entryMenu.forEach(elem => {
+        entryMenuClose(elem)
+    })
+})
+
+
+function entryMenuActive()
+{
+    foodActive();
+    entryMenu.classList.add('active')
+    entryMenuOverlay.classList.add('active');
+}
+
+function entryMenuClose()
+{
+    closeLowerEntryMenu();
+    entryMenu.classList.remove('active')
+    entryMenuOverlay.classList.remove('active');
+}
+
+function entryDisplay()
+{
+    document.querySelectorAll('.food').forEach(elem => elem.style.display = 'none')
+    document.querySelectorAll('.drink').forEach(elem => elem.style.display = 'none')
+    document.querySelectorAll('.others').forEach(elem => elem.style.display = 'none')
+}
+
+function foodActive()
+{
+    entryDisplay();
+    underline.style.left = '7.4rem'
+    document.querySelectorAll('.food').forEach(elem => elem.style.display = 'inline-flex')
+}
+
+function drinkActive()
+{
+    entryDisplay();
+    underline.style.left = '18.9rem'
+    document.querySelectorAll('.drink').forEach(elem => elem.style.display = 'inline-flex')
+}
+
+function otherActive()
+{
+    entryDisplay();
+    underline.style.left = '30.55rem'
+    document.querySelectorAll('.others').forEach(elem => elem.style.display = 'inline-flex')
+}
+
+// lower entry menu 
+
+const entryButtons = document.querySelectorAll('.entry-type')
+const lowerEntryMenu = document.querySelector('.lower-entry-menu')
+const entrySelected = document.querySelector('.entry-type-selected')
+const selectedTime = document.querySelector('.selected-time')
+const selectedDate = document.querySelector('.selected-date')
+const entryDateMenu = document.querySelector('.date-menu')
+// const EntryDate = (event) => {
+//     event.target.classList.add('date-clicked');
+//   }
+
+    
+
+
+entryButtons.forEach(elem => elem.addEventListener('click', openLowerEntryMenu))
+entryDateMenu.addEventListener('click', lowerEntryMenuCalendar)
+entryOK.addEventListener('click', newDateSelected)
+
+today();
+
+function openLowerEntryMenu()
+{
+    entryType();
+    timeSet();
+    lowerEntryMenu.style.display = 'block'
+}
+
+function closeLowerEntryMenu()
+{
+    lowerEntryMenu.style.display = 'none'
+}
+
+function entryType()
+{
+    entrySelected.innerHTML = event.target.innerHTML
+}
+
+// function Time()
+// {
+//     if (hour <= 11)
+//     {
+//         selectedTime.innerHTML = headerTime.innerHTML + ' ' + am.innerHTML
+//     }
+//     else if (hour > 12)
+//     {
+//         selectedTime.innerHTML = headerTime.innerHTML + ' ' + pm.innerHTML
+//     }
+//     else 
+//     {
+//         selectedTime.innerHTML = headerTime.innerHTML + ' ' + pm.innerHTML
+//     }
+// }
+
+function today()
+{
+    selectedDate.innerHTML = Months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+}
+
+function newDateSelected()
+{
+    calendarClose();
+    selectedDate.innerHTML = calendarHeaderDate.innerHTML + ', ' + date.getFullYear();
+}
+
+function lowerEntryMenuCalendar()
+{
+    adjustCalendar();
+    Calendar.classList.add('active')
+    calendarOverlay.classList.add('active');
+    document.querySelectorAll('.ok, .cancel').forEach(elem => elem.style.display = 'none')
+    document.querySelectorAll('.entry-ok, .entry-cancel').forEach(elem => elem.style.display = 'block')
+}
+
+// function clickedEntryDate(event)
+// {
+//     event.target.classList.add('selected')
+//     console.log(date)
+// }
+
+
 
