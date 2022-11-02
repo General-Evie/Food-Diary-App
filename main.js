@@ -86,7 +86,6 @@ const adjustCalendar = () =>
     document.querySelector('.date2 h2').innerHTML = Months[date.getMonth()];
     document.querySelector('.date2 h2').innerHTML = Months[date.getMonth()];
   
-    // let days = ""
     Monthdays.innerHTML = '';
 
     for(let x = firstDayofMonth; x > 0; x--)
@@ -120,7 +119,6 @@ const adjustCalendar = () =>
         {
             const clickedDate = document.querySelector('.selected')
             document.querySelectorAll('.selected').forEach(elem => elem.classList.remove('selected'))
-            // console.log(date)
             event.target.classList.add('selected')
             
             if(clickedDate != null)
@@ -152,8 +150,6 @@ const adjustCalendar = () =>
     
 }
 
-
-// console.log(lastDay)
 
 document.querySelector('.date h1').innerHTML = Months[date.getMonth()];
 document.querySelector('.date p').innerHTML = MonthsAbb[date.getMonth()] + ' ' + date.getDate();
@@ -249,7 +245,6 @@ function entryDisplay()
 function foodActive()
 {
     entryDisplay();
-    // document.querySelector('.food').classList.add('active')
     underline.style.left = '7.4rem'
     document.querySelectorAll('.food').forEach(elem => elem.style.display = 'inline-flex')
 }
@@ -257,7 +252,6 @@ function foodActive()
 function drinkActive()
 {
     entryDisplay();
-    // document.querySelector('.drink').classList.add('active')
     underline.style.left = '18.9rem'
     document.querySelectorAll('.drink').forEach(elem => elem.style.display = 'inline-flex')
 }
@@ -265,7 +259,6 @@ function drinkActive()
 function otherActive()
 {
     entryDisplay();
-    // document.querySelector('.others').classList.add('active')
     underline.style.left = '30.55rem'
     document.querySelectorAll('.others').forEach(elem => elem.style.display = 'inline-flex')
 }
@@ -290,7 +283,6 @@ entryDateMenu.addEventListener('click', lowerEntryMenuCalendar)
 entryOK.addEventListener('click', newDateSelected)
 
 today();
-
 
 function openLowerEntryMenu()
 {
@@ -357,16 +349,173 @@ function lowerEntryMenuCalendar()
 const hour = date.getHours();
 const minute = date.getMinutes();
 const standard = hour - 12
-const am = document.querySelector('.am')
-const pm = document.querySelector('.pm')
-const arm = document.querySelector('.arm')
+const am = document.getElementById('am')
+const pm = document.getElementById('pm')
+const hrArm = document.querySelector('.hr-arm')
+const minArm =document.querySelector('.min-arm')
 const hoursRatio = hour / 12
 const clockHours = document.querySelector('.hours')
+const clockMinutes = document.querySelector('.minutes')
 const hrDivs = document.querySelector('.hr')
 const headerTime = document.querySelector('.clock-header h1')
+const clockOK = document.querySelector('.clock-ok')
 
 // Time();
 
+
+
+openTimeMenu.addEventListener('click', clockMenuActive)
+entryMenuBack.addEventListener('click', clockMenuClose)
+clockOverlay.addEventListener('click', () => {
+    const clockMenu = document.querySelectorAll('#clock-overlay.active')
+    clockMenu.forEach(elem => {
+        clockMenuClose(elem)
+    })
+})
+
+document.querySelector('.Minute').addEventListener('click', minutesActive)
+document.querySelector('.Hour').addEventListener('click', hoursActive)
+am.addEventListener('click', setAM)
+pm.addEventListener('click', setPM)
+clockOK.addEventListener('click', timeSet)
+
+
+// document.querySelector('.analog').addEventListener('mousemove', () =>
+// {
+//     selector.style.transform = "rotate(30deg)";
+// })
+
+for(let h = 1; h <= 12; h++)
+{
+    const Hours = document.createElement('div')
+    const reverse = document.createElement('b')
+    Hours.classList.add('hr')
+    reverse.innerHTML = h
+    clockHours.appendChild(Hours)
+    Hours.appendChild(reverse)
+    Hours.style.setProperty('--rotation', h)
+    reverse.style.setProperty('--Reverse-rotation', h)
+
+    document.querySelectorAll('.hr').forEach(elem => elem.addEventListener('mouseover', (event) => 
+    {
+        const selected = document.querySelector('.selected') 
+        document.querySelectorAll('.selected').forEach(elem => elem.classList.remove('selected'))
+        // console.log(date)
+        event.target.classList.add('selected')
+        
+        
+        if(selected != null)
+        {
+            hrArm.style.setProperty('--arm-rotation', Number(selected.innerHTML))
+            document.querySelector('.Hour').innerHTML = selected.innerHTML
+        }
+    }))
+}
+
+for(let m = 0; m <= 59; m++)
+{
+    const Minutes = document.createElement('div')
+    const reverse = document.createElement('b')
+    
+    Minutes.classList.add('min')
+    
+    if
+    ((
+           m/5 === Math.floor(0)
+        || m/5 === Math.floor(1) 
+        || m/5 === Math.floor(2)
+        || m/5 === Math.floor(3)
+        || m/5 === Math.floor(4)
+        || m/5 === Math.floor(5)
+        || m/5 === Math.floor(6)
+        || m/5 === Math.floor(7)
+        || m/5 === Math.floor(8)
+        || m/5 === Math.floor(9)
+        || m/5 === Math.floor(10)
+        || m/5 === Math.floor(11)
+    ))
+    {
+        reverse.innerHTML = m
+    }
+    else
+    {
+        reverse.innerHTML = m
+        reverse.classList.add('tics')
+    }
+   
+    clockMinutes.appendChild(Minutes)
+    Minutes.appendChild(reverse)
+    Minutes.style.setProperty('--rotation', m)
+    reverse.style.setProperty('--Reverse-rotation', m)
+
+    document.querySelectorAll('.min').forEach(elem => elem.addEventListener('mouseover', (event) => 
+    {
+        const selected = document.querySelector('.selected') 
+        
+        document.querySelectorAll('.selected').forEach(elem => elem.classList.remove('selected'))
+        document.querySelectorAll('.tics').forEach(elem => elem.style.color = "transparent")
+        
+        event.target.classList.add('selected')
+        event.target.style.color = "var(--white)"
+        minArm.style.setProperty('--arm-rotation', Number(selected.innerHTML))
+
+        if(Number(selected.innerHTML) <= 9)
+        {
+            document.querySelector('.Minute').innerHTML = '0' + selected.innerHTML    
+        }
+        else
+        {
+            document.querySelector('.Minute').innerHTML = selected.innerHTML
+        }
+        // document.querySelectorAll('.tics').forEach(elem => elem.innerHTML = "•")
+    }))
+}
+
+
+startTime();
+
+
+function clockMenuActive()
+{
+    hoursActive();
+    // setArm(selected, hoursRatio);
+    clock.classList.add('active')
+    clockOverlay.classList.add('active');
+    document.querySelectorAll('.clock-ok, .clock-cancel').forEach(elem => elem.style.display = 'block')
+}
+
+function clockMenuClose()
+{
+    entryMenuActive();
+    clock.classList.remove('active')
+    clockOverlay.classList.remove('active');
+}
+
+function clockDisplay()
+{
+    document.querySelector('.hours').style.display = 'none'
+    document.querySelector('.minutes').style.display = 'none'
+    hrArm.style.display = 'none'
+    minArm.style.display = 'none'
+}
+
+function hoursActive()
+{
+    clockDisplay();
+    document.querySelector('.Hour').style.opacity = "1"
+    document.querySelector('.Minute').style.opacity = ".5"
+    document.querySelector('.hours').style.display = 'block'
+    hrArm.style.display = 'block'
+}
+
+function minutesActive()
+{
+    clockDisplay();
+    document.querySelector('.Minute').style.opacity = "1"
+    document.querySelector('.Hour').style.opacity = ".5"
+    document.querySelector('.minutes').style.display = 'block'
+    minArm.style.display = 'block'
+}
 
 function startTime()
 {
@@ -396,104 +545,28 @@ function startTime()
     }
 }
 
-
-
-
-
-openTimeMenu.addEventListener('click', clockMenuActive)
-entryMenuBack.addEventListener('click', clockMenuClose)
-clockOverlay.addEventListener('click', () => {
-    const clockMenu = document.querySelectorAll('#clock-overlay.active')
-    clockMenu.forEach(elem => {
-        clockMenuClose(elem)
-    })
-})
-
-document.querySelector('.Minute').addEventListener('click', minutesActive)
-document.querySelector('.Hour').addEventListener('click', hoursActive)
-
-
-// document.querySelector('.analog').addEventListener('mousemove', () =>
-// {
-//     selector.style.transform = "rotate(30deg)";
-// })
-
-for(s = 1; s <= 12; s++)
+function setAM()
 {
-
+    am.style.opacity = "1"
+    pm.style.opacity = ".5"
 }
 
-for(let h = 1; h <= 12; h++)
+function setPM()
 {
-    const Hours = document.createElement('div')
-    const reverse = document.createElement('b')
-    Hours.classList.add('hr')
-    reverse.innerHTML = h
-    clockHours.appendChild(Hours)
-    Hours.appendChild(reverse)
-    Hours.style.setProperty('--rotation', h)
-    reverse.style.setProperty('--Reverse-rotation', h)
-
-    document.querySelectorAll('.hr').forEach(elem => elem.addEventListener('click', (event) => 
-    {
-        const clickedTime = document.querySelector('.selected') 
-        document.querySelectorAll('.selected').forEach(elem => elem.classList.remove('selected'))
-        // console.log(date)
-        event.target.classList.add('selected')
-        // arm.style.setProperty('--arm-rotation',)
-        
-        if(clickedTime != null)
-        {
-            document.querySelector('.Hour').innerHTML = clickedTime.innerHTML
-        }
-        // timeSet();
-    }))
-}
-
-startTime();
-
-
-function clockMenuActive()
-{
-    hoursActive();
-    // setArm(selected, hoursRatio);
-    clock.classList.add('active')
-    clockOverlay.classList.add('active');
-    document.querySelectorAll('.clock-ok, .clock-cancel').forEach(elem => elem.style.display = 'block')
-}
-
-function clockMenuClose()
-{
-    entryMenuActive();
-    clock.classList.remove('active')
-    clockOverlay.classList.remove('active');
-}
-
-function clockDisplay()
-{
-    document.querySelector('.hours').style.display = 'none'
-    document.querySelector('.minutes').style.display = 'none'
-}
-
-function hoursActive()
-{
-    clockDisplay();
-    document.querySelector('.Hour').style.opacity = "1"
-    document.querySelector('.Minute').style.opacity = ".5"
-    document.querySelector('.hours').style.display = 'block'
-}
-
-function minutesActive()
-{
-    clockDisplay();
-    document.querySelector('.Minute').style.opacity = "1"
-    document.querySelector('.Hour').style.opacity = ".5"
-    document.querySelector('.minutes').style.display = 'block'
+    pm.style.opacity = "1"
+    am.style.opacity = ".5"
 }
 
 function timeSet()
 {
-    selectedTime.innerHTML = headerTime.innerHTML
+    if(am.style.opacity === '1')
+    {
+        selectedTime.innerHTML = headerTime.innerHTML + " " + am.innerHTML
+    }
+    else
+    {
+        selectedTime.innerHTML = headerTime.innerHTML + " " + pm.innerHTML
+    }
 }
 
 function setArm(element, rotation)

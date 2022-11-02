@@ -64,7 +64,7 @@
                 <div class="entry-ok">Ok</div>
             </div>
         </div>
-        
+
         <div id="calendar-overlay"></div>
 
         <div class="clock">
@@ -75,8 +75,8 @@
                     <div class="Minute"></div>
                 </h1>
                 <div>
-                    <p class="am">AM</p>
-                    <p class="pm">PM</p>
+                    <p class="am-pm" id="am">AM</p>
+                    <p class="am-pm" id="pm">PM</p>
                 </div>
                 <!-- <h1>Set Time</h1> -->
             </div>
@@ -84,95 +84,11 @@
                 <div class="analog">
                     <div class="dial-selector">
                         <div class="fulcrum"></div>
-                        <div class="arm"></div>
+                        <div class="hr-arm"></div>
+                        <div class="min-arm"></div>
                     </div>
                     <div class="hours"></div>
-                    <div class="minutes">
-                        <!-- <div class="fives min min0"><b>0</b></div>
-                        <div class="tics">
-                            <div class="min min1"><b>•</b></div>
-                            <div class="min min2"><b>•</b></div>
-                            <div class="min min3"><b>•</b></div>
-                            <div class="min min4"><b>•</b></div>
-                        </div>
-                        <div class="fives min min5"><b>5</b></div>
-                        <div class="tics">
-                            <div class="min min6"><b>•</b></div>
-                            <div class="min min7"><b>•</b></div>
-                            <div class="min min8"><b>•</b></div>
-                            <div class="min min9"><b>•</b></div>
-                        </div>
-                        <div class="fives min min10"><b>10</b></div>
-                        <div class="tics">
-                            <div class="min min11"><b>•</b></div>
-                            <div class="min min12"><b>•</b></div>
-                            <div class="min min13"><b>•</b></div>
-                            <div class="min min14"><b>•</b></div>
-                        </div>
-                        <div class="fives min min15"><b>15</b></div>
-                        <div class="tics">
-                            <div class="min min16"><b>•</b></div>
-                            <div class="min min17"><b>•</b></div>
-                            <div class="min min18"><b>•</b></div>
-                            <div class="min min19"><b>•</b></div>
-                        </div>
-                        <div class="fives min min20"><b>20</b></div>
-                        <div class="tics">
-                            <div class="min min21"><b>•</b></div>
-                            <div class="min min22"><b>•</b></div>
-                            <div class="min min23"><b>•</b></div>
-                            <div class="min min24"><b>•</b></div>
-                        </div>
-                        <div class="fives min min25"><b>25</b></div>
-                        <div class="tics">
-                            <div class="min min26"><b>•</b></div>
-                            <div class="min min27"><b>•</b></div>
-                            <div class="min min28"><b>•</b></div>
-                            <div class="min min29"><b>•</b></div>
-                        </div>
-                        <div class="fives min min30"><b>30</b></div>
-                        <div class="tics">
-                            <div class="min min31"><b>•</b></div>
-                            <div class="min min32"><b>•</b></div>
-                            <div class="min min33"><b>•</b></div>
-                            <div class="min min34"><b>•</b></div>
-                        </div>
-                        <div class="fives min min35"><b>35</b></div>
-                        <div class="tics">
-                            <div class="min min36"><b>•</b></div>
-                            <div class="min min37"><b>•</b></div>
-                            <div class="min min38"><b>•</b></div>
-                            <div class="min min39"><b>•</b></div>
-                        </div>
-                        <div class="fives min min40"><b>40</b></div>
-                        <div class="tics">
-                            <div class="min min41"><b>•</b></div>
-                            <div class="min min42"><b>•</b></div>
-                            <div class="min min43"><b>•</b></div>
-                            <div class="min min44"><b>•</b></div>
-                        </div>
-                        <div class="fives min min45"><b>45</b></div>
-                        <div class="tics">
-                            <div class="min min46"><b>•</b></div>
-                            <div class="min min47"><b>•</b></div>
-                            <div class="min min48"><b>•</b></div>
-                            <div class="min min49"><b>•</b></div>
-                        </div>
-                        <div class="fives min min50"><b>50</b></div>
-                        <div class="tics">
-                            <div class="min min51"><b>•</b></div>
-                            <div class="min min52"><b>•</b></div>
-                            <div class="min min53"><b>•</b></div>
-                            <div class="min min54"><b>•</b></div>
-                        </div>
-                        <div class="fives min min55"><b>55</b></div>
-                        <div class="tics">
-                            <div class="min min56"><b>•</b></div>
-                            <div class="min min57"><b>•</b></div>
-                            <div class="min min58"><b>•</b></div>
-                            <div class="min min59"><b>•</b></div>
-                        </div> -->
-                    </div>
+                    <div class="minutes"></div>
                 </div>
                 <!-- <div class="digital">
                     <h2>Time</h2>
@@ -190,7 +106,14 @@
 
         <div class="content"> 
             <div class="entries">
-
+                <div class="entry">
+                    <div class="entry-main">
+                        <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/bowl-food-solid.svg" alt=""></button>Lunch</div>
+                        <div class="entry-description">Sandwich - 620cals</div>
+                    </div>
+                    <div class="entry-time">12:00PM</div>
+                </div>
+                
             </div>
             <button class="entry-button"><img id="pen" src="icons/pen-to-square-solid.svg" alt=""></button>
         </div>
