@@ -105,16 +105,7 @@
         <div id="clock-overlay"></div>
 
         <div class="content"> 
-            <div class="entries">
-                <div class="entry">
-                    <div class="entry-main">
-                        <div class="type-of-entry"></div>
-                        <div class="entry-description">Sandwich - 620cals</div>
-                    </div>
-                    <div class="entry-time">12:00PM</div>
-                </div>
-                
-            </div>
+            <div class="entries"></div>
             <button class="entry-button"><img id="pen" src="icons/pen-to-square-solid.svg" alt=""></button>
         </div>
         
@@ -133,33 +124,85 @@
             <div class="underline"></div>
             <div class="entry-menu-content">
                 <div class="food">
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/bowl-food-solid.svg" alt=""></button>Lunch</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/utensils-solid.svg" alt=""></button>Food</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/burger-solid.svg" alt=""></button>Junk</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/pizza-slice-solid.svg" alt=""></button>Snacks</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/plate-wheat-solid.svg" alt=""></button>Dinner</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/bacon-solid.svg" alt=""></button>Breakfast</div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/bowl-food-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Lunch</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/utensils-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Food</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/burger-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Junk</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/pizza-slice-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Snacks</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/plate-wheat-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Dinner</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/bacon-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Breakfast</div>
+                    </div>
                 </div>
                 <div class="drink">
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/glass-water-solid.svg" alt=""></button>Water</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/mug-saucer-solid.svg" alt=""></button>Tea</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/wine-bottle-solid.svg" alt=""></button>Juice</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/bottle-droplet-solid.svg" alt=""></button>Energy</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/beer-mug-empty-solid.svg" alt=""></button>Alchohol</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/glass-water-solid.svg" alt=""></button>Drink</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/mug-hot-solid.svg" alt=""></button>Coffee</div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/glass-water-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Water</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/mug-saucer-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Tea</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/wine-bottle-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Juice</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/bottle-droplet-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Energy</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/beer-mug-empty-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Alchohol</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/glass-water-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Drink</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/mug-hot-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Coffee</div>
+                    </div>
                 </div>
                 <div class="others">
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/dumbbell-solid.svg" alt=""></button>Exercise</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/prescription-bottle-medical-solid.svg" alt=""></button>Meds</div>
-                    <div class="entry-type"><button class="entry-buttons"><img class="entry-icons" src="icons/wheat-awn-solid.svg" alt=""></button>Herbal</div>
-                    <div class="entry-type" id="supplements"><button class="entry-buttons"><img class="entry-icons" src="icons/pills-solid.svg" alt=""></button>Supplements</div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/dumbbell-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Exercise</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/prescription-bottle-medical-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Meds</div>
+                    </div>
+                    <div class="entry-type">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/wheat-awn-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Herbal</div>
+                    </div>
+                    <div class="entry-type" id="supplements">
+                        <button class="entry-buttons"><img class="entry-icons" src="icons/pills-solid.svg" alt=""></button>
+                        <div class="entry-type-name">Supplements</div>
+                    </div>
                 </div>
             </div>
             <div class="lower-entry-menu-background">
                 <div class="lower-entry-menu">
                     <div class="lower-entry-menu-header">
                         <div class="entry-type-selected"></div>
+                        <div class="entry-name-selected"></div>
                         <button class="save">Save <img id="check" src="icons/circle-check-solid.svg" alt=""></button>
                     </div>
                     <div class="input-content">

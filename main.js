@@ -177,8 +177,6 @@ document.querySelector('.nextMonth').addEventListener('click', () =>
 // console.log(clickedEntryDate)
 
 
-
-
 openCalendar.forEach(elem => elem.addEventListener('click', calendarActive))
 Cancel.forEach(elem => elem.addEventListener('click', calendarClose))
 calendarOverlay.addEventListener('click', () => {
@@ -260,7 +258,6 @@ for(let h = 1; h <= 12; h++)
     {
         const selected = document.querySelector('.selected') 
         document.querySelectorAll('.selected').forEach(elem => elem.classList.remove('selected'))
-        // console.log(date)
         event.target.classList.add('selected')
         
         
@@ -338,7 +335,7 @@ startTime();
 function clockMenuActive()
 {
     hoursActive();
-    // setArm(selected, hoursRatio);
+
     clock.classList.add('active')
     clockOverlay.classList.add('active');
     document.querySelectorAll('.clock-ok, .clock-cancel').forEach(elem => elem.style.display = 'block')
@@ -427,6 +424,7 @@ function timeSet()
     {
         selectedTime.innerHTML = headerTime.innerHTML + " " + pm.innerHTML
     }
+    clockMenuClose();
 }
 
 function setArm(element, rotation)
@@ -501,10 +499,12 @@ function otherActive()
 
 const entryButtons = document.querySelectorAll('.entry-type')
 const lowerEntryMenu = document.querySelector('.lower-entry-menu')
-const entrySelected = document.querySelector('.entry-type-selected')
+const entryTypeSelected = document.querySelector('.entry-type-selected')
+const entryNameSelected = document.querySelector('.entry-name-selected')
 const selectedTime = document.querySelector('.selected-time')
 const selectedDate = document.querySelector('.selected-date')
 const entryDateMenu = document.querySelector('.date-menu')
+
 // const EntryDate = (event) => {
 //     event.target.classList.add('date-clicked');
 //   }
@@ -532,7 +532,8 @@ function closeLowerEntryMenu()
 
 function entryType()
 {
-    entrySelected.innerHTML = event.target.innerHTML
+    entryTypeSelected.innerHTML = event.target.outerHTML
+    entryNameSelected.innerHTML = event.currentTarget.outerText
 }
 
 // function Time()
@@ -577,5 +578,45 @@ function lowerEntryMenuCalendar()
 //     console.log(date)
 // }
 
+// entries 
 
+const saveButton = document.querySelector('.save')
+const entries = document.querySelector('.entries')
+
+saveButton.addEventListener('click', makeNewEntry)
+
+function makeNewEntry()
+{
+    const entry = document.createElement('div')
+    const entryMain = document.createElement('div')
+    const typeOfEntry = document.createElement('div')
+    const nameOfEntry = document.createElement('div')
+    const entryDescription = document.createElement('div')
+    const entryDetails = document.createElement('div')
+    const timeOfEntry = document.createElement('div')
+    const description = document.querySelector('.description-input').value
+
+
+    entryMain.classList.add('entry-main')
+    typeOfEntry.classList.add('type-of-entry')
+    nameOfEntry.classList.add('entry-name')
+    entryDescription.classList.add('entry-description')
+    entryDetails.classList.add('entry-details')
+    timeOfEntry.classList.add('entry-time')
+
+    typeOfEntry.innerHTML = entryTypeSelected.innerHTML
+    nameOfEntry.innerHTML = entryNameSelected.innerHTML
+    entryDescription.innerHTML = description
+    timeOfEntry.innerHTML = selectedTime.innerHTML
+    // console.log(description)
+
+    entries.appendChild(entry)
+    entry.appendChild(entryMain)
+    entryMain.appendChild(typeOfEntry)
+    typeOfEntry.appendChild(entryDetails)
+    entryDetails.appendChild(nameOfEntry)
+    entryDetails.appendChild(entryDescription)
+    entryMain.appendChild(timeOfEntry)
+    entryMenuClose();
+}
 
