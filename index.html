@@ -13,13 +13,6 @@
 
     <main>
            
-        <nav class="main-nav">
-            <ul class="main-ul">
-                <li class="main-li">Daily</li>
-                <li class="main-li">Week</li>
-                <li class="main-li">Month</li>
-            </ul>
-        </nav>
         <div class="calendar-button">
             <div class="month">
                 <i class="fas">&#xf104;</i>
@@ -103,6 +96,16 @@
             </div>
         </div>
         <div id="clock-overlay"></div>
+
+        <div class="descriptions">
+            <div class="description-header">
+                <h1><i class="fas close-description-menu">&#xf104;</i>Description</h1>
+            </div>
+            <div class="description-content">
+                <div class="saved-descriptions"></div>
+            </div>
+        </div>
+        <div id="description-menu-overlay"></div>
 
         <div class="content"> 
             <div class="entries"></div>
@@ -212,7 +215,7 @@
                                     <img class="lower-entry-menu-icons" src="icons/list-ul-solid.svg" alt="">
                                     Description
                                 </label>
-                            <input class="description-input" type="text" required />
+                            <input class="description-input" type="text" placeholder="Add Here" required />
                             </div>
                             <div class="description-menu">Choose</div>
                         </div>

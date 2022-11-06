@@ -17,31 +17,6 @@ html
     background-color: #555;
 }
 
-.main-nav
-{
-    background-color: var(--main-color);
-    padding: 2.5rem 5rem 2.5rem 5rem;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
-}
-
-.main-ul
-{
-    display: flex;
-    padding: 0;
-    gap: 5rem;
-    margin: 0;
-    ;
-}
-
-.main-li
-{
-    display: inline-block;
-    list-style: none;
-    font-size: 1.5rem;
-    color: rgb(255, 255, 255);
-}
-
 h1
 {
     margin: 0;
@@ -72,6 +47,8 @@ a
 .calendar-button
 {
     background-color: var(--main-color);
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
 }
 
 #calendar 
@@ -104,8 +81,12 @@ a
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 0 2rem;
+    padding: 3rem 2rem;
+}
 
+.date p
+{
+    margin-bottom: 0;
 }
 
 .calendar-header
@@ -383,6 +364,40 @@ a
     background-color: var(--light-blue);
 }  */
 
+.descriptions
+{
+    position: fixed;
+    left: 50%;
+    bottom: -42%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    z-index: 20;
+}
+
+.descriptions.active 
+{
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.description-header
+{
+    width: 40rem;
+    /* padding: 2rem; */
+    background-color: var(--main-color);
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.description-content
+{
+    width: 40rem;
+    height: 47.5rem;
+    background-color: #fff;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+
 .content
 {
     background-color: var(--white);
@@ -478,7 +493,7 @@ a
     font-weight: normal;
 }
 
-.close-menu
+.close-menu, .close-description-menu
 {
     padding: 2rem;
 }
@@ -569,7 +584,7 @@ a
 .lower-entry-menu
 {
     display: none;
-    box-shadow: 0 -5px 5px 0 rgba(0, 0, 0, .4);
+    box-shadow: 0 -10px 5px -5px rgba(0, 0, 0, .4);
 }
 
 .lower-entry-menu-header
@@ -638,6 +653,7 @@ a
 {
     border: none;
     margin-left: 2rem;
+    background-color: darkcyan;
 }
 
 .lower-entry-menu-icons
@@ -679,24 +695,6 @@ a
     pointer-events: all;
 }
 
-#entry-menu-overlay
-{
-    position: fixed;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* background-color: rgba(0, 0, 0, .5); */
-    pointer-events: none;
-}
-
-#entry-menu-overlay.active
-{
-    opacity: 1;
-    pointer-events: all;
-}
-
 #clock-overlay
 {
     position: fixed;
@@ -711,6 +709,41 @@ a
 }
 
 #clock-overlay.active
+{
+    opacity: 1;
+    pointer-events: all;
+}
+
+#description-menu-overlay
+{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
+    pointer-events: none;
+}
+
+#description-menu-overlay.active
+{
+    opacity: 1;
+    pointer-events: all;
+}
+
+#entry-menu-overlay
+{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+#entry-menu-overlay.active
 {
     opacity: 1;
     pointer-events: all;

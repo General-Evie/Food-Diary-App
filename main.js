@@ -437,6 +437,35 @@ function setHours(element, rotation)
     element.style.setProperty('--rotation', rotation = h)
 }
 
+// description menu
+
+const openDescriptionMenu = document.querySelector('.description-menu')
+const descriptionMenuBack = document.querySelector('.close-description-menu')
+const descriptionOverlay =  document.getElementById('description-menu-overlay')
+const descriptions = document.querySelector('.descriptions')
+
+
+openDescriptionMenu.addEventListener('click', descriptionMenuActive)
+descriptionMenuBack.addEventListener('click', descriptionMenuClose)
+descriptionOverlay.addEventListener('click', () => {
+    const descriptionMenu = document.querySelectorAll('#description-menu-overlay.active')
+    descriptionMenu.forEach(elem => {
+        descriptionMenuClose(elem)
+    })
+})
+
+function descriptionMenuActive()
+{
+    descriptions.classList.add('active')
+    descriptionOverlay.classList.add('active');
+}
+
+function descriptionMenuClose()
+{
+    descriptions.classList.remove('active')
+    descriptionOverlay.classList.remove('active');
+}
+
 // entry menu
 
 document.getElementById('food').addEventListener('click', foodActive)
