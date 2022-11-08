@@ -54,21 +54,6 @@ const Weekdays =
         "December"
     ]
 
-    const MonthsAbb =
-    [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-    ]
 
 const adjustCalendar = () =>
 {
@@ -151,8 +136,7 @@ const adjustCalendar = () =>
 }
 
 
-document.querySelector('.date h1').innerHTML = Months[date.getMonth()];
-document.querySelector('.date p').innerHTML = MonthsAbb[date.getMonth()] + ' ' + date.getDate();
+document.querySelector('.date h1').innerHTML = Months[date.getMonth()] + ' ' + date.getDate();
 document.querySelector('.calendar-header span').innerHTML = date.getFullYear();
 
 
@@ -466,6 +450,8 @@ function descriptionMenuClose()
     descriptionOverlay.classList.remove('active');
 }
 
+
+
 // entry menu
 
 document.getElementById('food').addEventListener('click', foodActive)
@@ -583,7 +569,7 @@ function entryType()
 
 function today()
 {
-    selectedDate.innerHTML = Months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+    selectedDate.innerHTML = document.querySelector('.date h1').innerHTML + ', ' + date.getFullYear();
 }
 
 function newDateSelected()
@@ -612,6 +598,7 @@ function lowerEntryMenuCalendar()
 const saveButton = document.querySelector('.save')
 const entries = document.querySelector('.entries')
 
+
 saveButton.addEventListener('click', makeNewEntry)
 
 function makeNewEntry()
@@ -624,7 +611,9 @@ function makeNewEntry()
     const entryDetails = document.createElement('div')
     const timeOfEntry = document.createElement('div')
     const description = document.querySelector('.description-input').value
+    const entryValue = description
 
+    console.log(entryValue)
 
     entryMain.classList.add('entry-main')
     typeOfEntry.classList.add('type-of-entry')
@@ -639,6 +628,7 @@ function makeNewEntry()
     timeOfEntry.innerHTML = selectedTime.innerHTML
     // console.log(description)
 
+
     entries.appendChild(entry)
     entry.appendChild(entryMain)
     entryMain.appendChild(typeOfEntry)
@@ -646,6 +636,17 @@ function makeNewEntry()
     entryDetails.appendChild(nameOfEntry)
     entryDetails.appendChild(entryDescription)
     entryMain.appendChild(timeOfEntry)
+    // saveInputs();
     entryMenuClose();
 }
 
+function saveInputs()
+{
+    const entryValue = entry
+
+    console.log(entryValue)
+    // if(entryValue)
+    // {
+    //     localStorage.setItem(entryValue)
+    // }
+}

@@ -84,11 +84,6 @@ a
     padding: 3rem 2rem;
 }
 
-.date p
-{
-    margin-bottom: 0;
-}
-
 .calendar-header
 {
     width: 100%;
@@ -402,7 +397,7 @@ a
 {
     background-color: var(--white);
     min-width: 40rem;
-    min-height: 40rem;
+    min-height: 45rem;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
     position: relative;
