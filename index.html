@@ -13,15 +13,6 @@
 
     <main>
            
-        <div class="calendar-button">
-            <div class="month">
-                <i class="fas">&#xf104;</i>
-                <div class="date">
-                    <h1></h1>    
-                </div>
-                <i class="fas">&#xf105;</i>
-            </div>
-        </div>
         <div id="calendar">
                 
             <div class="calendar-header">
@@ -98,7 +89,7 @@
 
         <div class="descriptions">
             <div class="description-header">
-                <h1><i class="fas close-description-menu">&#xf104;</i>Description</h1>
+                <h1><i class="fas close-description-menu">&#xf104;</i>Descriptions</h1>
             </div>
             <div class="description-content">
                 <div class="saved-descriptions"></div>
@@ -106,12 +97,32 @@
         </div>
         <div id="description-menu-overlay"></div>
 
-        <div class="content"> 
-            <div class="entries"></div>
-            <button class="entry-button"><img id="pen" src="icons/pen-to-square-solid.svg" alt=""></button>
+        <div class="update-menu">
+            <div class="update-header">
+                <h1><i class="fas close-update-menu">&#xf104;</i>Details</h1>
+            </div>
+            <div class="update-content">
+                <div class=""></div>
+            </div>
+        </div>
+        <div id="update-menu-overlay"></div>
+
+        <div class="calendar-button">
+            <div class="month">
+                <i class="fas prevDay">&#xf104;</i>
+                <div class="date">
+                    <h1></h1>    
+                </div>
+                <i class="fas nextDay">&#xf105;</i>
+            </div>
         </div>
         
+        <div class="content"> 
+            <div class="entries"></div>  
+        </div>
+        <div class="entries-overlay"><button class="entry-button"><img id="pen" src="icons/pen-to-square-solid.svg" alt=""></button></div>
         <div class="entry-menu">
+
             <div class="entry-menu-header">
    
                 <h1><i class="fas close-menu">&#xf104;</i>Manage</h1>
@@ -234,7 +245,11 @@
                                     <img class="lower-entry-menu-icons" src="icons/calendar-regular.svg" alt="">
                                     Date
                                 </label>
-                                <div class="selected-date"></div>
+                                <div class="selected-date">
+                                    <div class="selected-entry-day"></div>
+                                    <div>,</div>
+                                    <div class="selected-entry-year"></div>
+                                </div>
                             </div>
                             <div class="date-menu">Change</div>
                         </div>

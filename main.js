@@ -17,15 +17,16 @@ const clock = document.querySelector('.clock')
 const clockOverlay = document.getElementById('clock-overlay')
 const entryOK = document.querySelector('.entry-ok')
 const calendarHeaderDate = document.querySelector('.calendar-header h1')
-
-
-
+const Ok = document.querySelector('.ok')
+const headerMinute = document.querySelector('.Minute')
+const headerHour = document.querySelector('.Hour')
 
 // calendar menu
 
 const date = new Date();
 const month = date.getMonth()
-
+const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+const firstDayofMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay()
 
 const Weekdays = 
 [
@@ -57,15 +58,14 @@ const Weekdays =
 
 const adjustCalendar = () =>
 {
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+    
     const lastMonthday = new Date(date.getFullYear(), date.getMonth(), 0).getDate()
     
-    const firstDayofMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay()
+    
     const nextMonthday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay() 
     const nextDays = 7 - nextMonthday - 1 
     const Monthdays = document.querySelector('.days')
     
-     console.log(Weekdays[date.getDay()])
 
     document.querySelector('.date2 span').innerHTML = date.getFullYear();
     document.querySelector('.date2 h2').innerHTML = Months[date.getMonth()];
@@ -102,11 +102,12 @@ const adjustCalendar = () =>
         
         document.querySelectorAll('.allDays').forEach(elem => elem.addEventListener('click', (event) => 
         {
-            const clickedDate = document.querySelector('.selected')
+            
             document.querySelectorAll('.selected').forEach(elem => elem.classList.remove('selected'))
             event.target.classList.add('selected')
-            
-            if(clickedDate != null)
+            const clickedDate = document.querySelector('.selected')
+
+            if(clickedDate)
             {
             calendarHeaderDate.innerHTML = Months[date.getMonth()] + ' ' + clickedDate.innerHTML; 
             }
@@ -115,11 +116,11 @@ const adjustCalendar = () =>
         Monthdays.appendChild(Days);
        
     }
-        const clickedDate = document.querySelector('.selected')
-        if(clickedDate != null)
-        {
-           calendarHeaderDate.innerHTML = Months[date.getMonth()] + ' ' + clickedDate.innerHTML; 
-        }
+        // const clickedDate = document.querySelector('.selected')
+        // if(clickedDate)
+        // {
+        //    calendarHeaderDate.innerHTML = Months[date.getMonth()] + ' ' + clickedDate.innerHTML; 
+        // }
         
          
     for(let z = 1; z <= nextDays; z++)
@@ -136,7 +137,7 @@ const adjustCalendar = () =>
 }
 
 
-document.querySelector('.date h1').innerHTML = Months[date.getMonth()] + ' ' + date.getDate();
+
 document.querySelector('.calendar-header span').innerHTML = date.getFullYear();
 
 
@@ -158,7 +159,6 @@ document.querySelector('.nextMonth').addEventListener('click', () =>
 //     event.target.classList.add('selected');
 //     changeCalendar();
 // }))
-// console.log(clickedEntryDate)
 
 
 openCalendar.forEach(elem => elem.addEventListener('click', calendarActive))
@@ -215,8 +215,8 @@ clockOverlay.addEventListener('click', () => {
     })
 })
 
-document.querySelector('.Minute').addEventListener('click', minutesActive)
-document.querySelector('.Hour').addEventListener('click', hoursActive)
+headerMinute.addEventListener('click', minutesActive)
+headerHour.addEventListener('click', hoursActive)
 am.addEventListener('click', setAM)
 pm.addEventListener('click', setPM)
 clockOK.addEventListener('click', timeSet)
@@ -238,17 +238,16 @@ for(let h = 1; h <= 12; h++)
     Hours.style.setProperty('--rotation', h)
     reverse.style.setProperty('--Reverse-rotation', h)
 
-    document.querySelectorAll('.hr').forEach(elem => elem.addEventListener('mouseover', (event) => 
+    document.querySelectorAll('.hr').forEach(elem => elem.addEventListener('click', (event) => 
     {
-        const selected = document.querySelector('.selected') 
         document.querySelectorAll('.selected').forEach(elem => elem.classList.remove('selected'))
         event.target.classList.add('selected')
-        
+        const selected = document.querySelector('.selected') 
         
         if(selected != null)
         {
             hrArm.style.setProperty('--arm-rotation', Number(selected.innerHTML))
-            document.querySelector('.Hour').innerHTML = selected.innerHTML
+            headerHour.innerHTML = selected.innerHTML
         }
     }))
 }
@@ -289,24 +288,26 @@ for(let m = 0; m <= 59; m++)
     Minutes.style.setProperty('--rotation', m)
     reverse.style.setProperty('--Reverse-rotation', m)
 
-    document.querySelectorAll('.min').forEach(elem => elem.addEventListener('mouseover', (event) => 
+    document.querySelectorAll('.min b').forEach(elem => elem.addEventListener('click', (event) => 
     {
-        const selected = document.querySelector('.selected') 
         
+        date.setMinutes(Number(event.target.innerHTML))
+        console.log(date.getMinutes())
         document.querySelectorAll('.selected').forEach(elem => elem.classList.remove('selected'))
         document.querySelectorAll('.tics').forEach(elem => elem.style.color = "transparent")
         
         event.target.classList.add('selected')
+        const selected = document.querySelector('.selected') 
         event.target.style.color = "var(--white)"
         minArm.style.setProperty('--arm-rotation', Number(selected.innerHTML))
 
         if(Number(selected.innerHTML) <= 9)
         {
-            document.querySelector('.Minute').innerHTML = '0' + selected.innerHTML    
+            headerMinute.innerHTML = '0' + selected.innerHTML    
         }
         else
         {
-            document.querySelector('.Minute').innerHTML = selected.innerHTML
+            headerMinute.innerHTML = selected.innerHTML
         }
         // document.querySelectorAll('.tics').forEach(elem => elem.innerHTML = "•")
     }))
@@ -343,8 +344,8 @@ function clockDisplay()
 function hoursActive()
 {
     clockDisplay();
-    document.querySelector('.Hour').style.opacity = "1"
-    document.querySelector('.Minute').style.opacity = ".5"
+    headerHour.style.opacity = "1"
+    headerMinute.style.opacity = ".5"
     document.querySelector('.hours').style.display = 'block'
     hrArm.style.display = 'block'
 }
@@ -352,8 +353,8 @@ function hoursActive()
 function minutesActive()
 {
     clockDisplay();
-    document.querySelector('.Minute').style.opacity = "1"
-    document.querySelector('.Hour').style.opacity = ".5"
+    headerMinute.style.opacity = "1"
+    headerHour.style.opacity = ".5"
     document.querySelector('.minutes').style.display = 'block'
     minArm.style.display = 'block'
 }
@@ -362,27 +363,27 @@ function startTime()
 {
     if (hour <= 11)
     {
-        document.querySelector('.Hour').innerHTML = hour 
+        headerHour.innerHTML = hour 
         am.style.opacity = "1"
     }
     else if (hour > 12)
     {
-        document.querySelector('.Hour').innerHTML = standard
+        headerHour.innerHTML = standard
         pm.style.opacity = "1"
     }
     else 
     {
-        document.querySelector('.Hour').innerHTML = hour 
+        headerHour.innerHTML = hour 
         pm.style.opacity = "1"
     }
 
     if (minute < 10)
     {
-        document.querySelector('.Minute').innerHTML = '0' + minute
+        headerMinute.innerHTML = '0' + minute
     }
     else
     {
-        document.querySelector('.Minute').innerHTML = minute
+        headerMinute.innerHTML = minute
     }
 }
 
@@ -400,25 +401,35 @@ function setPM()
 
 function timeSet()
 {
-    if(am.style.opacity === '1')
+    headerHour.style.opacity === "1"
+    headerMinute.style.opacity === "1"
+    if(pm.style.opacity === '1' && Number(headerHour.innerHTML) !== 12)
+    {
+        selectedTime.innerHTML = headerTime.innerHTML + " " + pm.innerHTML
+        date.setHours(Number(headerHour.innerHTML) + 12)
+    }
+    else if(am.style.opacity === '1' && Number(headerHour.innerHTML) === 12)
     {
         selectedTime.innerHTML = headerTime.innerHTML + " " + am.innerHTML
+        date.setHours(Number(headerHour.innerHTML) - 12)
+    }
+    else if(am.style.opacity === '1')
+    {
+        selectedTime.innerHTML = headerTime.innerHTML + " " + am.innerHTML
+        date.setHours(Number(headerHour.innerHTML))
     }
     else
     {
         selectedTime.innerHTML = headerTime.innerHTML + " " + pm.innerHTML
+        date.setHours(Number(headerHour.innerHTML))
     }
+    date.setMinutes(Number(headerMinute.innerHTML))
+    
+    
+    console.log(date.getHours())
+    console.log(date.getMinutes())
+    console.log(date)
     clockMenuClose();
-}
-
-function setArm(element, rotation)
-{
-    element.style.setProperty('--rotation', rotation * 360)
-}
-
-function setHours(element, rotation)
-{
-    element.style.setProperty('--rotation', rotation = h)
 }
 
 // description menu
@@ -518,7 +529,10 @@ const entryTypeSelected = document.querySelector('.entry-type-selected')
 const entryNameSelected = document.querySelector('.entry-name-selected')
 const selectedTime = document.querySelector('.selected-time')
 const selectedDate = document.querySelector('.selected-date')
+const selectedEntryDay = document.querySelector('.selected-entry-day')
+const selectedEntryYear = document.querySelector('.selected-entry-year')
 const entryDateMenu = document.querySelector('.date-menu')
+const headerDate = document.querySelector('.date h1')
 
 // const EntryDate = (event) => {
 //     event.target.classList.add('date-clicked');
@@ -569,13 +583,15 @@ function entryType()
 
 function today()
 {
-    selectedDate.innerHTML = document.querySelector('.date h1').innerHTML + ', ' + date.getFullYear();
+    selectedEntryDay.innerHTML = Months[date.getMonth()] + ' ' + date.getDate();
+    selectedEntryYear.innerHTML = date.getFullYear();
 }
 
 function newDateSelected()
 {
     calendarClose();
-    selectedDate.innerHTML = calendarHeaderDate.innerHTML + ', ' + date.getFullYear();
+    selectedEntryDay.innerHTML = calendarHeaderDate.innerHTML
+    selectedEntryYear.innerHTML = date.getFullYear();
 }
 
 function lowerEntryMenuCalendar()
@@ -587,19 +603,133 @@ function lowerEntryMenuCalendar()
     document.querySelectorAll('.entry-ok, .entry-cancel').forEach(elem => elem.style.display = 'block')
 }
 
-// function clickedEntryDate(event)
-// {
-//     event.target.classList.add('selected')
-//     console.log(date)
-// }
-
 // entries 
 
 const saveButton = document.querySelector('.save')
 const entries = document.querySelector('.entries')
+const savedDescriptions = document.querySelector('.saved-descriptions')
+const timeTest = document.querySelectorAll('.entry-main')
+const newDescriptionValue = document.querySelector('.description-input')
+// const testTime = timeTest.getAttribute('milliseconds')
+
+// saveButton.addEventListener('click', makeNewEntry)
+saveButton.addEventListener('click', () => 
+{
+    entryData();
+    console.log(data)
+    entryMenuClose();
+})
+savedDescriptions.addEventListener('click', savedInputs)
+Ok.addEventListener('click', changeDayByCalendar)
+
+let data = {};
+
+let entryData = () => 
+{
+    if(newDescriptionValue.value !== "")
+    {
+        data['description'] = newDescriptionValue.value
+    }
+    createEntry();
+    newDescriptionValue.value = ""
+}
+
+let createEntry = () =>
+{
+    const entry = document.createElement('div')
+    const entryMain = document.createElement('div')
+    const typeOfEntry = document.createElement('div')
+    const nameOfEntry = document.createElement('div')
+    const entryDescription = document.createElement('div')
+    const entryDetails = document.createElement('div')
+    const timeOfEntry = document.createElement('div')
+    const addNewDescription = document.createElement('div')
+    const newDescriptionValue = document.querySelector('.description-input').value
+    const descriptionsKey = 'descriptions'
 
 
-saveButton.addEventListener('click', makeNewEntry)
+    entryMain.classList.add('entry-main')
+    typeOfEntry.classList.add('type-of-entry')
+    nameOfEntry.classList.add('entry-name')
+    entryDescription.classList.add('entry-description')
+    entryDetails.classList.add('entry-details')
+    timeOfEntry.classList.add('entry-time')
+    addNewDescription.classList.add('new-description')
+
+    entryMain.setAttribute('date', Months[date.getMonth()] + ' ' + date.getDate())
+    // entryMain.setAttribute('milliseconds', date.getTime())
+    typeOfEntry.innerHTML = entryTypeSelected.innerHTML
+    nameOfEntry.innerHTML = entryNameSelected.innerHTML
+    entryDescription.innerHTML = newDescriptionValue
+    timeOfEntry.innerHTML = selectedTime.innerHTML
+    
+    addNewDescription.innerHTML = newDescriptionValue
+    savedDescriptions.innerHTML = addNewDescription.innerHTML 
+   
+   
+
+
+    entries.appendChild(entry)
+    entry.appendChild(entryMain)
+    entryMain.appendChild(typeOfEntry)
+    entryMain.appendChild(timeOfEntry)
+    typeOfEntry.appendChild(entryDetails)
+    entryDetails.appendChild(nameOfEntry)
+    entryDetails.appendChild(entryDescription)
+    savedDescriptions.appendChild(addNewDescription)
+
+    if(localStorage.getItem('entries') == null)
+    { 
+    localStorage.setItem('entries', '[]')
+    }
+
+    const entryDivs = entryMain.outerHTML
+    const oldEntries = JSON.parse(localStorage.getItem('entries'));
+    oldEntries.push(entryDivs);
+    localStorage.setItem('entries', JSON.stringify(oldEntries));
+
+
+    // entries.innerHTML += data.description
+}
+
+if(JSON.parse(localStorage.getItem('entries')))
+{
+    entries.innerHTML = JSON.parse(localStorage.getItem('entries')).join('')
+}
+if(JSON.parse(localStorage.getItem('descriptions')))
+{
+    savedDescriptions.innerHTML = JSON.parse(localStorage.getItem('descriptions')).join('')
+}
+
+
+const adjustDay = () =>
+{
+    // console.log(selectedTime.textContent > "2:00PM")
+    headerDate.innerHTML = Months[date.getMonth()] + ' ' + date.getDate();
+    today();
+    console.log()
+    
+    // document.querySelectorAll('.entry-main[milliseconds]').sort(function(a,b) {return a.milliseconds - b.milliseconds})
+    document.querySelectorAll('.entry-main').forEach(elem => elem.style.display = "none");
+    document.querySelectorAll('.entry-main[date="' + headerDate.innerHTML + '"]').forEach(elem => elem.style.display = "block");
+    // testTime.sort(function(a, b){return a - b});
+}
+
+adjustDay();
+
+document.querySelector('.prevDay').addEventListener('click', () => 
+{
+    date.setDate(date.getDate() - 1)
+    adjustDay();
+})
+
+document.querySelector('.nextDay').addEventListener('click', () => 
+{
+    date.setDate(date.getDate() + 1)
+    adjustDay();
+})
+    
+ 
 
 function makeNewEntry()
 {
@@ -610,10 +740,10 @@ function makeNewEntry()
     const entryDescription = document.createElement('div')
     const entryDetails = document.createElement('div')
     const timeOfEntry = document.createElement('div')
-    const description = document.querySelector('.description-input').value
-    const entryValue = description
+    const addNewDescription = document.createElement('div')
+    const newDescriptionValue = document.querySelector('.description-input').value
+    const descriptionsKey = 'descriptions'
 
-    console.log(entryValue)
 
     entryMain.classList.add('entry-main')
     typeOfEntry.classList.add('type-of-entry')
@@ -621,32 +751,125 @@ function makeNewEntry()
     entryDescription.classList.add('entry-description')
     entryDetails.classList.add('entry-details')
     timeOfEntry.classList.add('entry-time')
+    addNewDescription.classList.add('new-description')
 
+    entryMain.setAttribute('date', Months[date.getMonth()] + ' ' + date.getDate())
+    entryMain.setAttribute('milliseconds', date.getTime())
     typeOfEntry.innerHTML = entryTypeSelected.innerHTML
     nameOfEntry.innerHTML = entryNameSelected.innerHTML
-    entryDescription.innerHTML = description
+    entryDescription.innerHTML = newDescriptionValue
     timeOfEntry.innerHTML = selectedTime.innerHTML
-    // console.log(description)
+    
+    addNewDescription.innerHTML = newDescriptionValue
+    savedDescriptions.innerHTML = addNewDescription.innerHTML 
+   
+   
 
 
     entries.appendChild(entry)
     entry.appendChild(entryMain)
     entryMain.appendChild(typeOfEntry)
+    entryMain.appendChild(timeOfEntry)
     typeOfEntry.appendChild(entryDetails)
     entryDetails.appendChild(nameOfEntry)
     entryDetails.appendChild(entryDescription)
-    entryMain.appendChild(timeOfEntry)
+    savedDescriptions.appendChild(addNewDescription)
     // saveInputs();
-    entryMenuClose();
+
+    if(localStorage.getItem('') == null)
+    { 
+    localStorage.setItem(descriptionsKey, '[]')
+    }
+
+    const descriptionDivs = addNewDescription.outerHTML
+    const oldDescriptions = JSON.parse(localStorage.getItem(descriptionsKey));
+    if(newDescriptionValue !== descriptionDivs)
+    { 
+        oldDescriptions.push(descriptionDivs);
+    }
+    localStorage.setItem(descriptionsKey, JSON.stringify(oldDescriptions));
+
+    if(localStorage.getItem('entries') == null)
+    { 
+    localStorage.setItem('entries', '[]')
+    }
+
+    const entryDivs = entryMain.outerHTML
+    const oldEntries = JSON.parse(localStorage.getItem('entries'));
+    oldEntries.push(entryDivs);
+    localStorage.setItem('entries', JSON.stringify(oldEntries));
+
+
+    
+
+    location.reload();
 }
 
-function saveInputs()
+function savedInputs()
 {
-    const entryValue = entry
-
-    console.log(entryValue)
-    // if(entryValue)
-    // {
-    //     localStorage.setItem(entryValue)
-    // }
+    const DescriptionValue = document.querySelector('.description-input')
+    DescriptionValue.value = event.target.innerHTML
+    descriptionMenuClose();
 }
+
+function changeDayByCalendar()
+{
+    if(headerDate.innerHTML < calendarHeaderDate.innerHTML)
+    {   
+        for(let u = headerDate.innerHTML; u <= calendarHeaderDate.innerHTML; u++)
+        {
+            date.setDate(date.getDate() + 1)
+            console.log(headerDate.innerHTML < calendarHeaderDate.innerHTML)
+            calendarClose();
+            adjustDay();
+        } 
+    }
+    
+            
+    console.log(headerDate)
+        
+        // for(let d = 1; d < ; d++)
+        // {
+            
+        //     date.setDate(date.getDate() + 1)
+        // }
+        // calendarClose();
+        // adjustDay();
+        // else
+        // {
+        //     console.log("else")
+        // }
+    
+    
+    
+}
+
+// update menu
+
+
+// const openUpdateMenu = document.querySelectorAll('.entry-main')
+// const updateMenuBack = document.querySelector('.close-update-menu')
+// const updateOverlay =  document.getElementById('update-menu-overlay')
+// const updateMenu = document.querySelector('.update-menu')
+
+
+// openUpdateMenu.addEventListener('click', updateMenuActive)
+// descriptionMenuBack.addEventListener('click', updateMenuClose)
+// descriptionOverlay.addEventListener('click', () => {
+//     const updateMenu = document.querySelectorAll('#update-menu-overlay.active')
+//     updateMenu.forEach(elem => {
+//         descriptionMenuClose(elem)
+//     })
+// })
+
+// function updateMenuActive()
+// {
+//     updateMenu.classList.add('active')
+//     updateOverlay.classList.add('active');
+// }
+
+// function updateMenuClose()
+// {
+//     updateMenu.classList.remove('active')
+//     updateOverlay.classList.remove('active');
+// }

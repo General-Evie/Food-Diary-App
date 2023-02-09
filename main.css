@@ -259,6 +259,7 @@ a
     align-items: center; 
     height: 100%;
     width: 100%;
+    pointer-events: none;
 } 
 
 .fulcrum
@@ -352,12 +353,12 @@ a
     color: transparent;
 } 
 
-/* .hours b:hover, .minutes b:hover
+.hours b:hover, .minutes b:hover
 {
     z-index: -10;
     color: var(--white);
     background-color: var(--light-blue);
-}  */
+} 
 
 .descriptions
 {
@@ -392,15 +393,63 @@ a
     border-bottom-right-radius: 2rem;
 }
 
+.new-description
+{
+    padding: 1rem;
+}
+
+.update-menu
+{
+    position: fixed;
+    left: 50%;
+    bottom: -42%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    z-index: 20;
+}
+
+.update-menu.active 
+{
+    transform: translate(-50%, -50%) scale(1);
+}
 
 .content
 {
     background-color: var(--white);
     min-width: 40rem;
-    min-height: 45rem;
+    height: 44rem;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
+    overflow: hidden;
+    overflow-y: scroll;
     position: relative;
+}
+
+.content::-webkit-scrollbar
+{
+    display: none;
+}
+
+.entries-overlay
+{
+    position: fixed;
+    bottom: 5%;
+    left: 63%;
+    pointer-events: none;
+}
+
+.entry-button
+{
+    height: 3rem;
+    width: 3rem;
+    right: 10%; 
+    bottom: 5%;
+    margin: 5rem;
+    border: 1px solid var(--light-blue);
+    border-radius: .8rem;
+    background-color: var(--light-blue);
+    box-shadow: 0 5px 5px 0px rgba(0, 0, 0, .4);
+    pointer-events: all;
 }
 
 .entry
@@ -417,7 +466,6 @@ a
     place-items: center;
     position: relative;
     padding: 1rem;
-    
 }
 
 .type-of-entry
@@ -441,18 +489,14 @@ a
     padding: 1rem;
 }
 
-.entry-button
+.entry-date
 {
+    display: flex;
     position: absolute;
-    height: 3rem;
-    width: 3rem;
-    right: 0;
     bottom: 0;
-    margin: 5rem;
-    border: 1px solid var(--light-blue);
-    border-radius: .8rem;
-    background-color: var(--light-blue);
-    box-shadow: 0 5px 5px 0px rgba(0, 0, 0, .4);
+    right: 0;
+    padding: 1rem;
+    /* opacity: 0; */
 }
 
 .list
@@ -585,7 +629,6 @@ a
 .lower-entry-menu-header
 {
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     padding: 2rem;
     padding-bottom: 0; 
@@ -667,8 +710,14 @@ a
 
 .selected-date
 {
+    display: flex;
     margin-left: 2rem;
     opacity: .5;
+}
+
+.selected-entry-year
+{
+    margin-left: .7ch;
 }
 
 #calendar-overlay
@@ -726,6 +775,25 @@ a
     opacity: 1;
     pointer-events: all;
 }
+
+#update-menu-overlay
+{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
+    pointer-events: none;
+}
+
+#update-menu-overlay.active
+{
+    opacity: 1;
+    pointer-events: all;
+}
+
 
 #entry-menu-overlay
 {
